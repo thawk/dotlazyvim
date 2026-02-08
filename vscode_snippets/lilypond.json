@@ -1,0 +1,357 @@
+{
+    "ver": {
+        "prefix": "ver",
+        "body": [
+            "\\version \"${1:2.23.2}\""
+        ],
+        "description": "\\version"
+    },
+    "paper": {
+        "prefix": "paper",
+        "body": [
+            "\\paper {",
+            "\t#(set-paper-size \"${2:a4}\")",
+            "\ttwo-sided = ##${3:t}",
+            "",
+            "\tbinding-offset = ${4:10}\\mm  % scaled to paper-size",
+            "\tindent = ${5:15}\\mm         % scaled to paper-size",
+            "",
+            "\tscoreTitleMarkup = \\markup {",
+            "\t\t\\fill-line {",
+            "\t\t\t\\null",
+            "\t\t\t\\fontsize #4 \\bold \\fromproperty #'header:piece",
+            "\t\t\t\\fromproperty #'header:composer",
+            "\t\t}",
+            "\t}",
+            "}",
+            "$0"
+        ],
+        "description": "Paper setting"
+    },
+    "book": {
+        "prefix": "book",
+        "body": [
+            "\\bookpart {",
+            "\t\\header {",
+            "\t\tsubtitle = \"$1\"",
+            "\t}",
+            "\t$0",
+            "}"
+        ],
+        "description": "bookpart"
+    },
+    "score": {
+        "prefix": "score",
+        "body": [
+            "\\score {",
+            "\t\\header {",
+            "\t\tpiece = \"${1:示例曲谱}\"",
+            "\t}",
+            "",
+            "\t\\new GrandStaff <<",
+            "\t\t\\chords {",
+            "\t\t\t% 和弦功能",
+            "\t\t\t\\set noChordSymbol = \"\"",
+            "",
+            "\t\t\t$0",
+            "\t\t}",
+            "\t\t\\new Staff {",
+            "\t\t\t\\relative c' {",
+            "\t\t\t\t\\clef \"treble\"",
+            "\t\t\t\t\\key c \\major",
+            "\t\t\t\t\\time 4/4",
+            "\t\t\t\t% 高音部",
+            "\t\t\t\t",
+            "\t\t\t\t\\bar \"|.\"",
+            "\t\t\t}",
+            "\t\t}",
+            "\t\t\\new Staff {",
+            "\t\t\t\\relative c {",
+            "\t\t\t\t\\clef \"bass\"",
+            "\t\t\t\t\\key c \\major",
+            "\t\t\t\t\\time 4/4",
+            "\t\t\t\t% 低音部",
+            "\t\t\t\t",
+            "\t\t\t\t\\bar \"|.\"",
+            "\t\t\t}",
+            "\t\t}",
+            "\t>>",
+            "}"
+        ],
+        "description": "带高低音部和和弦"
+    },
+    "relative": {
+        "prefix": "relative",
+        "body": [
+            "\\relative ${2:c'}",
+            "{",
+            "\t\\clef \"treble\"",
+            "\t\\key ${3:c} ${4:\\major}",
+            "\t\\time ${5:4/4}",
+            "\t% \\tempo 4 = 96",
+            "",
+            "\t$0",
+            "}",
+            "endsnippet\t",
+            "",
+            "snippet absolute \"Absolute notes\"",
+            "\\absolute",
+            "{",
+            "\t\\clef \"treble\"",
+            "\t\\key ${2:c} ${3:\\major}",
+            "\t\\time ${4:4/4}",
+            "\t% \\tempo 4. = 96",
+            "",
+            "\t$0",
+            "}",
+            "endsnippet\t",
+            "",
+            "snippet key \"Key\" b",
+            "\\key ${1:c} ${2:\\major}"
+        ],
+        "description": "Relative notes"
+    },
+    "bar": {
+        "prefix": "bar",
+        "body": [
+            "\\bar \"${1:||}\" $0"
+        ],
+        "description": "Bar"
+    },
+    "tuplet": {
+        "prefix": "tuplet",
+        "body": [
+            "\\tuplet ${1:3/2} { $2 } $0"
+        ],
+        "description": "Tuplet连音"
+    },
+    "barc": {
+        "prefix": "barc",
+        "body": [
+            "\\barNumberCheck #${0:number}"
+        ],
+        "description": "barNumberCheck"
+    },
+    "barcheck": {
+        "prefix": "barcheck",
+        "body": [
+            "\\barNumberCheck #${0:number}"
+        ],
+        "description": "barNumberCheck"
+    },
+    "octc": {
+        "prefix": "octc",
+        "body": [
+            "\\octaveCheck ${0:c'}"
+        ],
+        "description": "octaveCheck"
+    },
+    "octavecheck": {
+        "prefix": "octavecheck",
+        "body": [
+            "\\octaveCheck ${0:c'}"
+        ],
+        "description": "octaveCheck"
+    },
+    "transpose": {
+        "prefix": "transpose",
+        "body": [
+            "\\transpose ${1:c} ${2:f} {",
+            "\t$0",
+            "}"
+        ],
+        "description": "transpose"
+    },
+    "toc": {
+        "prefix": "toc",
+        "body": [
+            "\\markuplist \\table-of-contents"
+        ],
+        "description": "TOC"
+    },
+    "toci": {
+        "prefix": "toci",
+        "body": [
+            "\\tocItem \\markup \\\\\"$1\""
+        ],
+        "description": "tocItem"
+    },
+    "inote": {
+        "prefix": "inote",
+        "body": [
+            "\\\\include \"../${1:sheets}/${2:name}.ily\"",
+            "",
+            "\\\\tocItem \\markup \\concat { \\\\\"${3:$2}Piece\" \"\" }",
+            "\\\\score {",
+            "\t\\\\transpose c ${4:\\\\\"$2Key\"} {",
+            "\t\t\\\\chooseMusic \"a4\" \\\\\"$3NotesC\" \\\\\"$3MelodyC\"",
+            "\t}",
+            "\t\\\\header {",
+            "\t\tpiece    = \\\\\"$3Piece\"",
+            "\t\topus     = \\\\\"$3Opus\"",
+            "\t\tlyricist = \\\\\"$3Lyricist\"",
+            "\t\tcomposer = \\\\\"$3Composer\"",
+            "\t\tperformer = \\\\\"$3Performer\"",
+            "\t\tsubtitle = \\\\\"$3Subtitle\"",
+            "\t}",
+            "}",
+            "$0"
+        ],
+        "description": "include note"
+    },
+    "repeat": {
+        "prefix": "repeat",
+        "body": [
+            "\\repeat volta 3",
+            "{",
+            "\t$0",
+            "}",
+            "\\alternative",
+            "{",
+            "\t\\volta 1,2 {",
+            "\t}",
+            "\t\\volta 3 {",
+            "\t}",
+            "}"
+        ],
+        "description": "repeat with volta alternative"
+    },
+    "partial": {
+        "prefix": "partial",
+        "body": [
+            "\\partial ${1:duration}"
+        ],
+        "description": ""
+    },
+    "func": {
+        "prefix": "func",
+        "body": [
+            "${1:funcname} =",
+            "#(define-music-function",
+            "\t\t(parser location ${2:note})",
+            "\t\t(${3:ly:music?})",
+            "\t#{",
+            "\t\t$0",
+            "\t#})"
+        ],
+        "description": "define music functin"
+    },
+    "parallel": {
+        "prefix": "parallel",
+        "body": [
+            "\\parallelMusic #'(${1:melody} ${2:harmony}) {",
+            "\t% Bar 1",
+            "\t$0 |",
+            "\t|",
+            "",
+            "\t% Bar 2",
+            "\t|",
+            "\t|",
+            "}",
+            "\\new StaffGroup <<",
+            "\t\\new Staff \\\\$1",
+            "\t\\new Staff \\\\$2",
+            ">>"
+        ],
+        "description": "parallelMusic"
+    },
+    "color": {
+        "prefix": "color",
+        "body": [
+            "\\override Accidental.color = #(x11-color '${1:gray50})",
+            "\\override Beam.color       = #(x11-color '$1)",
+            "\\override Dots.color       = #(x11-color '$1)",
+            "\\override NoteHead.color   = #(x11-color '$1)",
+            "\\override Rest.color       = #(x11-color '$1)",
+            "\\override Stem.color       = #(x11-color '$1)",
+            "\\override Tie.color        = #(x11-color '$1)",
+            "$0"
+        ],
+        "description": "override colors"
+    },
+    "merge": {
+        "prefix": "merge",
+        "body": [
+            "\\new Staff <<",
+            "\t${1:\\tempo 4 = ${2:108}}",
+            "",
+            "\t\\relative c'' {",
+            "\t\t${3:\\melody}",
+            "\t}",
+            "\t\\\\\\\\",
+            "\t\\relative c' {",
+            "\t\t${4:\\harmony}",
+            "\t}",
+            ">>"
+        ],
+        "description": "Merge two Voice into one Staff"
+    },
+    "skip": {
+        "prefix": "skip",
+        "body": [
+            "\\repeat unfold ${1:note_count} { \\skip 1 }",
+            "$0"
+        ],
+        "description": "skip some notes"
+    },
+    "segno": {
+        "prefix": "segno",
+        "body": [
+            "\\mark \\markup { \\fontsize #-2 \\musicglyph \"scripts.segno\" }"
+        ],
+        "description": "segno"
+    },
+    "coda": {
+        "prefix": "coda",
+        "body": [
+            "\\mark \\markup { \\fontsize #-2 \\line { \"To Coda \" \\musicglyph \"scripts.coda\" } }"
+        ],
+        "description": "To Coda"
+    },
+    "ds": {
+        "prefix": "ds",
+        "body": [
+            "\\bar \"||\" ",
+            "\\once \\override Score.RehearsalMark.extra-offset = #'(0 . -8.5)",
+            "\\once \\override Score.RehearsalMark.baseline-skip = #9",
+            "\\mark \\markup \\center-column { \\fontsize #-2 {\\musicglyph \"scripts.coda\"} \"D.S.\" }"
+        ],
+        "description": "上coda，下D.S."
+    },
+    "rest": {
+        "prefix": "rest",
+        "body": [
+            "\\override MultiMeasureRest.expand-limit = #3",
+            "\\compressEmptyMeasures"
+        ],
+        "description": "long Rests"
+    },
+    "grace": {
+        "prefix": "grace",
+        "body": [
+            "\\afterGrace $1 { $2 } $0"
+        ],
+        "description": "后装饰音"
+    },
+    "acci": {
+        "prefix": "acci",
+        "body": [
+            "\\acciaccatura { $1 } $0"
+        ],
+        "description": "短倚音"
+    },
+    "appo": {
+        "prefix": "appo",
+        "body": [
+            "\\appoggiatura { $1 } $0"
+        ],
+        "description": "长倚音"
+    },
+    "装饰音": {
+        "prefix": "装饰音",
+        "body": [
+            "\\afterGrace $1 { $2 } $0"
+        ],
+        "description": "后装饰音"
+    }
+}

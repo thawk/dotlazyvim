@@ -1,0 +1,91 @@
+{
+    "background": {
+        "prefix": "background",
+        "body": [
+            "背景: $1",
+            "    假如$2",
+            "\t$0"
+        ],
+        "description": "背景"
+    },
+    "feature": {
+        "prefix": "feature",
+        "body": [
+            "功能: $0"
+        ],
+        "description": "功能"
+    },
+    "scenario": {
+        "prefix": "scenario",
+        "body": [
+            "场景: $1",
+            "    假如$2",
+            "    当$3",
+            "    那么$4",
+            "",
+            "$0"
+        ],
+        "description": "场景"
+    },
+    "scenario_outline": {
+        "prefix": "scenario_outline",
+        "body": [
+            "场景大纲: $1",
+            "    假如$2",
+            "    当$3",
+            "    那么$4",
+            "",
+            "\t例子: ${5:Name}",
+            "\t\t| ${6:col1} | ${7:col2} |",
+            "\t\t| ${8:val1} | ${9:val2} |",
+            "$0"
+        ],
+        "description": "场景大纲"
+    },
+    "given": {
+        "prefix": "given",
+        "body": [
+            "\t假如$0"
+        ],
+        "description": "假如"
+    },
+    "when": {
+        "prefix": "when",
+        "body": [
+            "\t当$0"
+        ],
+        "description": "当"
+    },
+    "then": {
+        "prefix": "then",
+        "body": [
+            "\t那么$0"
+        ],
+        "description": "那么"
+    },
+    "and": {
+        "prefix": "and",
+        "body": [
+            "\t而且$0"
+        ],
+        "description": "而且"
+    },
+    "but": {
+        "prefix": "but",
+        "body": [
+            "\t但是$0"
+        ],
+        "description": "但是"
+    },
+    "example": {
+        "prefix": "example",
+        "body": [
+            "例子: ${1:Name}",
+            "    | ${2:col1} | ${3:col2} |",
+            "    | ${4:val1} | ${5:val2} |",
+            "",
+            "$0"
+        ],
+        "description": "Example"
+    }
+}

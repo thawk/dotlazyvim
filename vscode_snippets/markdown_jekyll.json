@@ -1,0 +1,13 @@
+{
+    "/img": {
+        "prefix": "/img",
+        "body": [
+            "parts = snip.fn.split('-')",
+            "rv = ''",
+            "if len(parts) >= 3:",
+            "\trv = '/'.join(parts[:3])",
+            "snip.rv=rv`/${2:file.png}"
+        ],
+        "description": "jekyll image path completion"
+    }
+}

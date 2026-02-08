@@ -1,0 +1,26 @@
+{
+    "numpy": {
+        "prefix": "numpy",
+        "body": [
+            "import numpy as np",
+            ""
+        ],
+        "description": "import numpy"
+    },
+    "streamlit": {
+        "prefix": "streamlit",
+        "body": [
+            "import streamlit as st",
+            ""
+        ],
+        "description": "import streamlit"
+    },
+    "pandas": {
+        "prefix": "pandas",
+        "body": [
+            "import pandas as pd",
+            ""
+        ],
+        "description": "import pandas"
+    }
+}

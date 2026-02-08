@@ -1,0 +1,94 @@
+{
+    "name": "lazyvim-converted-snippets",
+    "displayName": "LazyVim Converted Snippets",
+    "description": "Converted UltiSnips to VS Code format for LazyVim/LuaSnip.",
+    "version": "1.0.0",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "all",
+                "path": "./all.json"
+            },
+            {
+                "language": "behave",
+                "path": "./behave.json"
+            },
+            {
+                "language": "html",
+                "path": "./html.json"
+            },
+            {
+                "language": "impressjs",
+                "path": "./impressjs.json"
+            },
+            {
+                "language": "javascript_node",
+                "path": "./javascript_node.json"
+            },
+            {
+                "language": "lilypond_additional",
+                "path": "./lilypond_additional.json"
+            },
+            {
+                "language": "lilypond_template",
+                "path": "./lilypond_template.json"
+            },
+            {
+                "language": "lilypond",
+                "path": "./lilypond.json"
+            },
+            {
+                "language": "make",
+                "path": "./make.json"
+            },
+            {
+                "language": "markdown_blocks",
+                "path": "./markdown_blocks.json"
+            },
+            {
+                "language": "markdown_jekyll",
+                "path": "./markdown_jekyll.json"
+            },
+            {
+                "language": "markdown_mermaid",
+                "path": "./markdown_mermaid.json"
+            },
+            {
+                "language": "markdown_skel",
+                "path": "./markdown_skel.json"
+            },
+            {
+                "language": "markdown",
+                "path": "./markdown.json"
+            },
+            {
+                "language": "python_behave",
+                "path": "./python_behave.json"
+            },
+            {
+                "language": "python_click",
+                "path": "./python_click.json"
+            },
+            {
+                "language": "python_import",
+                "path": "./python_import.json"
+            },
+            {
+                "language": "python_routine",
+                "path": "./python_routine.json"
+            },
+            {
+                "language": "python_skel",
+                "path": "./python_skel.json"
+            },
+            {
+                "language": "revealjs",
+                "path": "./revealjs.json"
+            },
+            {
+                "language": "sh",
+                "path": "./sh.json"
+            }
+        ]
+    }
+}

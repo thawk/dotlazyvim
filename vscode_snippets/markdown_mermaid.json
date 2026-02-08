@@ -1,0 +1,54 @@
+{
+    "class": {
+        "prefix": "class",
+        "body": [
+            "\\`\\`\\`mermaid",
+            "classDiagram$0",
+            "\tAnimal <|-- Duck",
+            "\tAnimal : -int age",
+            "\tAnimal : -String gender",
+            "\tAnimal: +isMammal()",
+            "\tAnimal: +mate()",
+            "\tclass Duck\\{",
+            "\t\t-String beakColor",
+            "\t\t+swim()",
+            "\t\t+quack()",
+            "\t}",
+            "\\`\\`\\`"
+        ],
+        "description": "Class Diagram"
+    },
+    "seq": {
+        "prefix": "seq",
+        "body": [
+            "\\`\\`\\`mermaid",
+            "sequenceDiagram$0",
+            "\tactor Alice",
+            "\tparticipant Bob",
+            "\tAlice->>John: Hello John, how are you?",
+            "\tloop Healthcheck",
+            "\t\tJohn->>John: Fight against hypochondria",
+            "\tend",
+            "\tNote right of John: Rational thoughts<br/>prevail...",
+            "\tJohn-->>Alice: Great!",
+            "\tJohn->>Bob: How about you?",
+            "\tBob-->>John: Jolly good!",
+            "\\`\\`\\`"
+        ],
+        "description": "Sequence Diagram"
+    },
+    "flow": {
+        "prefix": "flow",
+        "body": [
+            "\\`\\`\\`mermaid",
+            "flowchart ${1:LR}$0",
+            "\tA((Start)) --> B\\{Is it?};",
+            "\tB -- Yes --> C[OK];",
+            "\tC --> D[Rethink];",
+            "\tD --> B;",
+            "\tB -- No ----> E((End));",
+            "\\`\\`\\`"
+        ],
+        "description": "Flow Chart Diagram"
+    }
+}

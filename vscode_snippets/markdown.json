@@ -1,0 +1,83 @@
+{
+    "modeline": {
+        "prefix": "modeline",
+        "body": [
+            "[modeline]: # ( vim: set fenc=utf-8 ft=markdown: )"
+        ],
+        "description": "vim modeline"
+    },
+    "meta": {
+        "prefix": "meta",
+        "body": [
+            "Title:   ${1:title}",
+            "Authors: ${2:authors}",
+            "Summary: ${3:summary}",
+            "",
+            "$0"
+        ],
+        "description": "inline meta-data"
+    },
+    "toc": {
+        "prefix": "toc",
+        "body": [
+            "## 目录",
+            "",
+            "<details>",
+            "<summary></summary>",
+            "<!-- vim-markdown-toc GFM -->",
+            "",
+            "<!-- vim-markdown-toc -->",
+            "</details>",
+            "",
+            "$0"
+        ],
+        "description": "vim-markdown-toc"
+    },
+    "-[": {
+        "prefix": "-[",
+        "body": [
+            "- [${1: }] $0"
+        ],
+        "description": "- [ ] todo"
+    },
+    "*[": {
+        "prefix": "*[",
+        "body": [
+            "* [${1: }] $0"
+        ],
+        "description": "* [ ] todo"
+    },
+    "//": {
+        "prefix": "//",
+        "body": [
+            "[//]: # ($1)",
+            "$0"
+        ],
+        "description": "comment"
+    },
+    "meeting": {
+        "prefix": "meeting",
+        "body": [
+            "* **时间**：$1",
+            "* **地点**：$2",
+            "* **人员**：$3",
+            "* **内容**：",
+            "  - $4",
+            "* **问题**：",
+            "  - $5",
+            "* **结论**：",
+            "  - $6"
+        ],
+        "description": "会议纪要"
+    },
+    "src": {
+        "prefix": "src",
+        "body": [
+            "\\`\\`\\`$1",
+            "$TM_SELECTED_TEXT$2",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "code block"
+    }
+}

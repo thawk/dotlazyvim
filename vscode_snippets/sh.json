@@ -1,0 +1,171 @@
+{
+    "cwd": {
+        "prefix": "cwd",
+        "body": [
+            "while [ -h \"\\$SOURCE\" ]; do # resolve \\$SOURCE until the file is no longer a symlink",
+            "\tDIR=\"\\$( cd -P \"\\$( dirname \"\\$SOURCE\" )\" >/dev/null && pwd )\"",
+            "\tSOURCE=\"\\$(readlink \"\\$SOURCE\")\"",
+            "\t[[ \\$SOURCE != /* ]] && SOURCE=\"\\$DIR/\\$SOURCE\" # if \\$SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located",
+            "done",
+            "DIR=\"\\$( cd -P \"\\$( dirname \"\\$SOURCE\" )\" >/dev/null && pwd )\""
+        ],
+        "description": "Resolve current path and filename"
+    },
+    "temp": {
+        "prefix": "temp",
+        "body": [
+            "${1:TMPDIR}=\"\\$(mktemp -d ${2:`!p}",
+            "snip.rv = re.sub(r'[^a-zA-Z]', '_', snip.fn) or \"untitled\"",
+            "`}.XXXXXX)\"",
+            "trap \"rm -rf '\\\\$$1'\" 0               # EXIT",
+            "trap \"rm -rf '\\\\$$1'; exit 1\" 2       # INT",
+            "trap \"rm -rf '\\\\$$1'; exit 1\" 1 15    # HUP TERM",
+            "$0"
+        ],
+        "description": "TempDir"
+    },
+    "#!": {
+        "prefix": "#!",
+        "body": [
+            "#!/usr/bin/env bash",
+            "",
+            "$0"
+        ],
+        "description": "shebang"
+    },
+    "skel": {
+        "prefix": "skel",
+        "body": [
+            "#!/usr/bin/env bash",
+            "",
+            "EchoUsage()",
+            "{",
+            "\techo \"",
+            "Usage: \\$(basename \"\\$0\") [options] [--]",
+            "",
+            "\tOptions:",
+            "\t\t-h|help       Display this message",
+            "\t\t-v|verbose    Display more verbose log",
+            "\t\t-t|test <val> A testing argument",
+            "\" >&2",
+            "}",
+            "",
+            "VERBOSE=",
+            "while getopts \":hVvt:\" opt; do",
+            "\tcase \\$opt in",
+            "\t\th|help)",
+            "\t\t\tEchoUsage",
+            "\t\t\texit 0",
+            "\t\t\t;;",
+            "\t\tv|verbose)",
+            "\t\t\tVERBOSE=\"\\${VERBOSE}1\"",
+            "\t\t\t;;",
+            "\t\tt|test)",
+            "\t\t\techo \"Testing argument: '\\$OPTARG' at position \\$OPTIND\"",
+            "\t\t\t;;",
+            "\t\t* )",
+            "\t\t\techo -e \"\\n  Option does not exist : '\\$OPTARG' at position \\$OPTIND\\n\"",
+            "\t\t\tEchoUsage",
+            "\t\t\texit 1",
+            "\t\t\t;;",
+            "\tesac",
+            "done",
+            "shift \\$((\\$OPTIND-1))",
+            "",
+            "# 参数个数最少为1",
+            "if [ \\$# -lt 1 ]",
+            "then",
+            "\tEchoUsage",
+            "\texit 1",
+            "fi",
+            "",
+            "$0"
+        ],
+        "description": "Basic skel using bash getopts, work for macOS, not support long option"
+    },
+    "ostype": {
+        "prefix": "ostype",
+        "body": [
+            "case \"\\$OSTYPE\" in",
+            "\t\"darwin\"*)",
+            "\t\t: \"MacOS\"",
+            "\t;;",
+            "",
+            "\t\"linux\"*)",
+            "\t\t: \"Linux\"",
+            "\t;;",
+            "",
+            "\t*\"bsd\"* | \"dragonfly\" | \"bitrig\")",
+            "\t\t: \"BSD\"",
+            "\t;;",
+            "",
+            "\t\"cygwin\" | \"msys\" | \"win32\")",
+            "\t\t: \"Windows\"",
+            "\t;;",
+            "",
+            "\t*)",
+            "\t\tprintf '%s\\n' \"Unknown OS detected, aborting...\" >&2",
+            "\t\texit 1",
+            "\t;;",
+            "esac",
+            "",
+            "# Finally, set the variable.",
+            "os=\"\\$_\""
+        ],
+        "description": "case OSTYPE"
+    },
+    "die": {
+        "prefix": "die",
+        "body": [
+            "die() {",
+            "    echo \"\\${1:-Exiting}\" >&2",
+            "    exit \"\\${2:--1}\"",
+            "}"
+        ],
+        "description": "die function"
+    },
+    "read": {
+        "prefix": "read",
+        "body": [
+            "readarray -t ${1:my_array} <<<${2:\\$string}",
+            "$0"
+        ],
+        "description": "readarray from string into array"
+    },
+    "heredoc": {
+        "prefix": "heredoc",
+        "body": [
+            "<<< ${1:\"string\"}"
+        ],
+        "description": "herestring"
+    },
+    "append": {
+        "prefix": "append",
+        "body": [
+            "case \":\\\\${${1:PATH}:-}:\" in",
+            "    *:${2:new_path}:*) ;;",
+            "    *) $1=\"\\\\${$1:+\\\\$$1:}$2\" ;;",
+            "esac"
+        ],
+        "description": "Append new_path to $PATH if not existed"
+    },
+    "prepend": {
+        "prefix": "prepend",
+        "body": [
+            "case \":\\\\${${1:PATH}:-}:\" in",
+            "    *:${2:new_path}:*) ;;",
+            "    *) $1=\"$2\\\\${$1:+:\\\\$$1}\" ;;",
+            "esac"
+        ],
+        "description": "Prepend new_path to $PATH if not existed"
+    },
+    "if": {
+        "prefix": "if",
+        "body": [
+            "if ${2:type ${1:cmd} &> /dev/null}; then",
+            "\t${0:$TM_SELECTED_TEXT}",
+            "fi"
+        ],
+        "description": "if type ... then (if cmd exists)"
+    }
+}

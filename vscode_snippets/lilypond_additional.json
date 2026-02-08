@@ -1,0 +1,16 @@
+{
+    "toc": {
+        "prefix": "toc",
+        "body": [
+            "\\markuplist \\table-of-contents"
+        ],
+        "description": "目录"
+    },
+    "break": {
+        "prefix": "break",
+        "body": [
+            "\\\\pageBreakFor #'(${1:\"a4\" \"a5\"})"
+        ],
+        "description": "\\\\pageBreakFor #'(a4 a5)"
+    }
+}

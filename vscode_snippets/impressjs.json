@@ -1,0 +1,110 @@
+{
+    "modeline": {
+        "prefix": "modeline",
+        "body": [
+            "<!-- vim: set fenc=utf-8 ft=html.impressjs: -->"
+        ],
+        "description": "vim modeline"
+    },
+    "step": {
+        "prefix": "step",
+        "body": [
+            "<section id=\"${1:step-id}\" class=\"step${2: slide${3}}\">",
+            "\t<h3>$1</h3>",
+            "\t$0",
+            "</section>",
+            ""
+        ],
+        "description": "impress.js step"
+    },
+    "slide": {
+        "prefix": "slide",
+        "body": [
+            "<section class=\"step slide$3\">",
+            "\t<h3>$1</h3>",
+            "\t$0",
+            "</section>",
+            ""
+        ],
+        "description": "impress.js slide"
+    },
+    "markdown": {
+        "prefix": "markdown",
+        "body": [
+            "<div class=\"markdown\">",
+            "\t<script type=\"text/template\">",
+            "\t\t$0",
+            "\t</script>",
+            "</div>"
+        ],
+        "description": "impress.js markdown block"
+    },
+    "section": {
+        "prefix": "section",
+        "body": [
+            "<section id=\"${1:step-id}\" class=\"step slide title box\">",
+            "    <h2>$1</h2>",
+            "</section>",
+            ""
+        ],
+        "description": "impress section slide"
+    },
+    "v2": {
+        "prefix": "v2",
+        "body": [
+            "<div class=\"flex items-center\">",
+            "\t<div class=\"w-50\">",
+            "\t\t$0",
+            "\t</div>",
+            "\t<div class=\"w-50\">",
+            "\t</div>",
+            "</div>",
+            ""
+        ],
+        "description": "split into two part vertically"
+    },
+    "h2": {
+        "prefix": "h2",
+        "body": [
+            "<div class=\"flex flex-column items-center\">",
+            "\t<div class=\"h-50\">",
+            "\t\t$0",
+            "\t</div>",
+            "\t<div class=\"h-50\">",
+            "\t</div>",
+            "</div>",
+            ""
+        ],
+        "description": "split into two part horizontally"
+    },
+    "notes": {
+        "prefix": "notes",
+        "body": [
+            "<div class=\"notes\">",
+            "\t$0",
+            "</div>"
+        ],
+        "description": "insert notes"
+    },
+    "goto": {
+        "prefix": "goto",
+        "body": [
+            "data-goto-key-list=\"${1:ArrowRight}\" data-goto-next-list=\"${2:SlideId}\" "
+        ],
+        "description": "goto-key"
+    },
+    "rel-to": {
+        "prefix": "rel-to",
+        "body": [
+            "data-rel-to=\"${1:slideId}\" data-rel-reset data-rel-x=\"1w\" "
+        ],
+        "description": "data-rel-to"
+    },
+    "reset": {
+        "prefix": "reset",
+        "body": [
+            "data-rel-reset data-rel-${1:x}=\"${2:1w}\" "
+        ],
+        "description": "data-rel-reset"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "skel": {
+        "prefix": "skel",
+        "body": [
+            "include \\$(GOROOT)/src/Make.inc",
+            "TARG=${1:program}",
+            "GOFILES=\\",
+            "\t$1.go\\",
+            "\t$0",
+            "",
+            "include \\$(GOROOT)/src/Make.cmd"
+        ],
+        "description": "Go program Makefile"
+    }
+}

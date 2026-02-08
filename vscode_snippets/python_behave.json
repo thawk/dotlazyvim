@@ -1,0 +1,40 @@
+{
+    "step": {
+        "prefix": "step",
+        "body": [
+            "@${1:given}(u'${2:content}')",
+            "def step_impl(context):",
+            "\t$0"
+        ],
+        "description": "Behave step_impl"
+    },
+    "behave": {
+        "prefix": "behave",
+        "body": [
+            "# vim: set fileencoding=utf-8 tabstop=4 expandtab shiftwidth=4 softtabstop=4:",
+            "from behave import *",
+            "",
+            "$0"
+        ],
+        "description": "behave steps skel"
+    },
+    "step_table": {
+        "prefix": "step_table",
+        "body": [
+            "@${1:given}(u'${2:content}')",
+            "def step_impl(context):",
+            "\tfor row in context.table:",
+            "\t\t$0"
+        ],
+        "description": "Behave step_impl with table"
+    },
+    "step_match": {
+        "prefix": "step_match",
+        "body": [
+            "@${1:given}(u'${2:matching {text}}')",
+            "def step_impl(context, ${3:text}):",
+            "\t$0"
+        ],
+        "description": "Behave step_impl with matching"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "script": {
+        "prefix": "script",
+        "body": [
+            "<script src=\"$1\" charset=\"${3:utf-8}\"></script>"
+        ],
+        "description": "HTML <script src...>"
+    }
+}

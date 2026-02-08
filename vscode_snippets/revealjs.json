@@ -1,0 +1,81 @@
+{
+    "skel": {
+        "prefix": "skel",
+        "body": [
+            "<!doctype html>",
+            "<html>",
+            "\t<head>",
+            "\t\t<meta charset=\"utf-8\">",
+            "\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">",
+            "",
+            "\t\t<title>${1:幻灯标题}</title>",
+            "",
+            "\t\t<link rel=\"stylesheet\" href=\"vendor/reveal.js/dist/reset.css\">",
+            "\t\t<link rel=\"stylesheet\" href=\"vendor/reveal.js/dist/reveal.css\">",
+            "\t\t<link rel=\"stylesheet\" href=\"vendor/reveal.js/dist/theme/black.css\">",
+            "",
+            "\t\t<!-- Theme used for syntax highlighted code -->",
+            "\t\t<link rel=\"stylesheet\" href=\"vendor/reveal.js/plugin/highlight/monokai.css\">",
+            "\t</head>",
+            "\t<body>",
+            "\t\t<div class=\"reveal\">",
+            "\t\t\t<div class=\"slides\">",
+            "\t\t\t\t<section>",
+            "\t\t\t\t\t<h1>${2:$1}</h1>",
+            "\t\t\t\t</section>",
+            "\t\t\t\t<section>",
+            "\t\t\t\t\t${0:输入需要的内容}",
+            "\t\t\t\t</section>",
+            "\t\t\t</div>",
+            "\t\t</div>",
+            "",
+            "\t\t<script src=\"vendor/reveal.js/dist/reveal.js\"></script>",
+            "\t\t<script src=\"vendor/reveal.js/plugin/notes/notes.js\"></script>",
+            "\t\t<script src=\"vendor/reveal.js/plugin/markdown/markdown.js\"></script>",
+            "\t\t<script src=\"vendor/reveal.js/plugin/highlight/highlight.js\"></script>",
+            "\t\t<script>",
+            "\t\t\t// More info about initialization & config:",
+            "\t\t\t// - https://revealjs.com/initialization/",
+            "\t\t\t// - https://revealjs.com/config/",
+            "\t\t\tReveal.initialize({",
+            "\t\t\t\thash: true,",
+            "",
+            "\t\t\t\t// Learn about plugins: https://revealjs.com/plugins/",
+            "\t\t\t\tplugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]",
+            "\t\t\t});",
+            "\t\t</script>",
+            "\t</body>",
+            "</html>"
+        ],
+        "description": "reveal.js template"
+    },
+    "markdown": {
+        "prefix": "markdown",
+        "body": [
+            "<section data-markdown=\"${1:content.md}\">",
+            "</section>"
+        ],
+        "description": "reveal.js markdown w/ external file"
+    },
+    ".elem": {
+        "prefix": ".elem",
+        "body": [
+            "&shy;<!-- .element: ${1:class=\"${2:fragment}\"} -->$0"
+        ],
+        "description": "reveal.js markdown element class attributes (prepend elem)"
+    },
+    ".slide": {
+        "prefix": ".slide",
+        "body": [
+            "<!-- .slide: ${1:class=\"${2:title}\"} -->$0"
+        ],
+        "description": "reveal.js markdown title slide"
+    },
+    "notes": {
+        "prefix": "notes",
+        "body": [
+            "notes: ${1:speak notes}"
+        ],
+        "description": "reveal.js Markdown notes"
+    }
+}

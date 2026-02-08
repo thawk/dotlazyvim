@@ -1,0 +1,129 @@
+{
+    "cpp": {
+        "prefix": "cpp",
+        "body": [
+            "\\`\\`\\`cpp",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "cpp code block"
+    },
+    "css": {
+        "prefix": "css",
+        "body": [
+            "\\`\\`\\`css",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "css code block"
+    },
+    "haskell": {
+        "prefix": "haskell",
+        "body": [
+            "\\`\\`\\`haskell",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "ruby code block"
+    },
+    "html": {
+        "prefix": "html",
+        "body": [
+            "\\`\\`\\`html",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "html code block"
+    },
+    "js": {
+        "prefix": "js",
+        "body": [
+            "\\`\\`\\`javascript",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "javascript code block"
+    },
+    "lilypond": {
+        "prefix": "lilypond",
+        "body": [
+            "\\`\\`\\`lilypond",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "lilypond code block"
+    },
+    "markdown": {
+        "prefix": "markdown",
+        "body": [
+            "\\`\\`\\`markdown",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "markdown code block"
+    },
+    "python": {
+        "prefix": "python",
+        "body": [
+            "\\`\\`\\`python",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "python code block"
+    },
+    "racket": {
+        "prefix": "racket",
+        "body": [
+            "\\`\\`\\`racket",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "racket code block"
+    },
+    "ruby": {
+        "prefix": "ruby",
+        "body": [
+            "\\`\\`\\`ruby",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "ruby code block"
+    },
+    "sh": {
+        "prefix": "sh",
+        "body": [
+            "\\`\\`\\`sh",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "sh code block"
+    },
+    "sml": {
+        "prefix": "sml",
+        "body": [
+            "\\`\\`\\`sml",
+            "$TM_SELECTED_TEXT$1",
+            "\\`\\`\\`",
+            "$0"
+        ],
+        "description": "sml code block"
+    },
+    "anchor": {
+        "prefix": "anchor",
+        "body": [
+            "<a name=\"${1:anchor_name}\"></a>$0"
+        ],
+        "description": "anchor"
+    }
+}
