@@ -4,3 +4,5 @@
 if vim.env.PYTHON3_HOST_PROG and vim.env.PYTHON3_HOST_PROG ~= "" then
   vim.g.python3_host_prog = vim.env.PYTHON3_HOST_PROG
 end
+
+vim.opt.fileencodings = { "utf-8", "ucs-bom", "gb18030", "gbk", "big5", "latin1" }
