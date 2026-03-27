@@ -6,3 +6,9 @@ if vim.env.PYTHON3_HOST_PROG and vim.env.PYTHON3_HOST_PROG ~= "" then
 end
 
 vim.opt.fileencodings = { "utf-8", "ucs-bom", "gb18030", "gbk", "big5", "latin1" }
+
+vim.filetype.add({
+  extension = {
+    base = "yaml",
+  },
+})
