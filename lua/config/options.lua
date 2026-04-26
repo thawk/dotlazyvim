@@ -7,8 +7,12 @@ end
 
 vim.opt.fileencodings = { "utf-8", "ucs-bom", "gb18030", "gbk", "big5", "latin1" }
 
+-- 将 .base 识别为 obsidian_base
 vim.filetype.add({
   extension = {
-    base = "yaml",
+    base = "obsidian_base",
   },
 })
+
+-- 让 obsidian_base 使用 YAML 的 Treesitter parser（Neovim 0.9+）
+vim.treesitter.language.register("yaml", "obsidian_base")
