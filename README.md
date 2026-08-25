@@ -1,4 +1,3 @@
-# 💤 LazyVim
-
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+- clone to `$HOME/.LazyVim.d`
+- `ln -s $HOME/.LazyVim.d $HOME/.config/nvim`
+- 启动`nvim`
