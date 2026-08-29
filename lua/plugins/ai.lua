@@ -1,53 +1,63 @@
 return {
-  "nickjvandyke/opencode.nvim",
+  "carlos-algms/agentic.nvim",
+
+  --- @type agentic.PartialUserConfig
+  opts = {
+    -- Any ACP-compatible provider works. Built-in: "claude-agent-acp" | "gemini-acp" | "codex-acp" | "opencode-acp" | "cursor-acp" | "copilot-acp" | "auggie-acp" | "mistral-vibe-acp" | "cline-acp" | "goose-acp" | "kiro-acp" | "pi-acp"
+    provider = "opencode-acp", -- setting the name here is all you need to get started
+  },
+
+  -- these are just suggested keymaps; customize as desired
   keys = {
-    -- Recommended/example keymaps
-    {
-      "<leader>aa",
-      mode = { "n", "x" },
-      function()
-        require("opencode").ask("@this: ")
-      end,
-      desc = "Ask OpenCode…",
-    },
-    {
-      "<leader>ap",
-      mode = { "n", "x" },
-      function()
-        require("opencode").select()
-      end,
-      desc = "Select OpenCode…",
-    },
+    { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
     {
       "<leader>at",
-      mode = { "n", "x" },
       function()
-        return require("opencode").operator("@this ")
+        require("agentic").toggle()
       end,
-      desc = "Append range to OpenCode",
-      expr = true,
+      mode = { "n" },
+      desc = "Toggle Agentic Chat",
     },
     {
-      "<leader>al",
+      "<leader>as",
       function()
-        return require("opencode").operator("@this ") .. "_"
+        require("agentic").add_selection_or_file_to_context()
       end,
-      desc = "Append line to OpenCode",
-      expr = true,
+      mode = { "n", "v" },
+      desc = "Add file or selection to Agentic to Context",
     },
     {
-      "<S-C-u>",
+      "<leader>an",
       function()
-        require("opencode").command("session.half.page.up")
+        require("agentic").new_session()
       end,
-      desc = "Scroll OpenCode up",
+      mode = { "n", "v" },
+      desc = "New Agentic Session",
     },
     {
-      "<S-C-d>",
+      "<leader>ar", -- ai Restore
       function()
-        require("opencode").command("session.half.page.down")
+        require("agentic").restore_session()
       end,
-      desc = "Scroll OpenCode down",
+      desc = "Agentic Restore session",
+      silent = true,
+      mode = { "n", "v" },
+    },
+    {
+      "<leader>ad", -- ai Diagnostics
+      function()
+        require("agentic").add_current_line_diagnostics()
+      end,
+      desc = "Add current line diagnostic to Agentic",
+      mode = { "n" },
+    },
+    {
+      "<leader>aD", -- ai all Diagnostics
+      function()
+        require("agentic").add_buffer_diagnostics()
+      end,
+      desc = "Add all buffer diagnostics to Agentic",
+      mode = { "n" },
     },
   },
 }
