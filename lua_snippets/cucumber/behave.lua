@@ -3,7 +3,7 @@ local ls = require("luasnip")
 return {
 
   -- skel 框架
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[框架]] }, {
     ls.text_node({"# language: zh-CN", "功能: "}),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node({"", "", "	场景: "}),
@@ -17,6 +17,7 @@ return {
     ls.text_node({"", "	", "	"}),
     ls.insert_node(0),
     ls.text_node({"", ""}),
-  }, { description = [[框架]] }),
+  }),
 
 }
+

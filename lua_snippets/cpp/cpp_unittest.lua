@@ -3,7 +3,7 @@ local ls = require("luasnip")
 return {
 
   -- ut unittest skel
-  ls.snippet([[ut]], {
+  ls.snippet({ trig = [[ut]], desc = [[unittest skel]] }, {
     ls.text_node({"#include <boost/test/unit_test.hpp>", "#include <boost/system/error_code.hpp>", "#include <turtle/mock.hpp>", "#include <"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.findfile(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") .. ".h", vim.fn.substitute(vim.fn.expand("%:p"), "\\<unittest/.*", "include/**", ""), 1), ".*\\<include/", "", "") end),
     ls.text_node({">", "", "using namespace "}),
@@ -21,9 +21,9 @@ return {
     ls.text_node({")", "	{", "	}", "};", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", "", "BOOST_AUTO_TEST_SUITE_END()", ""}),
-  }, { description = [[unittest skel]] }),
+  }),
   -- sut1 unittest for sscc::*
-  ls.snippet([[sut1]], {
+  ls.snippet({ trig = [[sut1]], desc = [[unittest for sscc::*]] }, {
     ls.text_node({"#include <boost/test/unit_test.hpp>", "#include <boost/system/error_code.hpp>", "#include <turtle/mock.hpp>", "#include \"../src/"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end),
     ls.text_node({".h\"", "", "using namespace sscc"}),
@@ -41,9 +41,9 @@ return {
     ls.text_node({")", "	{", "	}", "};", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", "", "BOOST_AUTO_TEST_SUITE_END()", ""}),
-  }, { description = [[unittest for sscc::*]] }),
+  }),
   -- sut2 sscc::*::*
-  ls.snippet([[sut2]], {
+  ls.snippet({ trig = [[sut2]], desc = [[sscc::*::*]] }, {
     ls.text_node({"#include <boost/test/unit_test.hpp>", "#include <boost/system/error_code.hpp>", "#include <turtle/mock.hpp>", "#include \"../src/"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end),
     ls.text_node({".h\"", "", "using namespace sscc"}),
@@ -61,9 +61,9 @@ return {
     ls.text_node({")", "	{", "	}", "};", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", "", "BOOST_AUTO_TEST_SUITE_END()", ""}),
-  }, { description = [[sscc::*::*]] }),
+  }),
   -- sut3 sscc::*::*::*
-  ls.snippet([[sut3]], {
+  ls.snippet({ trig = [[sut3]], desc = [[sscc::*::*::*]] }, {
     ls.text_node({"#include <boost/test/unit_test.hpp>", "#include <boost/system/error_code.hpp>", "#include <turtle/mock.hpp>", "#include \"../src/"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end),
     ls.text_node({".h\"", "", "using namespace sscc"}),
@@ -81,9 +81,9 @@ return {
     ls.text_node({")", "	{", "	}", "};", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", "", "BOOST_AUTO_TEST_SUITE_END()", ""}),
-  }, { description = [[sscc::*::*::*]] }),
+  }),
   -- tc unittest for any class
-  ls.snippet([[tc]], {
+  ls.snippet({ trig = [[tc]], desc = [[unittest for any class]] }, {
     ls.text_node({"/**", " * @class "}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.fnamemodify(vim.fn.substitute(vim.fn.findfile(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") .. ".h", vim.fn.substitute(vim.fn.expand("%:p"), "\\<unittest/.*", "include/**", ""), 1), ".*\\<include/", "", ""), ":p:h"), "[.-]", "_", "g"), "/", "::", "g") end),
     ls.text_node("::"),
@@ -101,9 +101,9 @@ return {
     ls.text_node({")", "{", "	"}),
     ls.insert_node(0),
     ls.text_node({"", "}", ""}),
-  }, { description = [[unittest for any class]] }),
+  }),
   -- tc data-driven unittest
-  ls.snippet([[tc]], {
+  ls.snippet({ trig = [[tc]], desc = [[data-driven unittest]] }, {
     ls.text_node({"/**", " * @class "}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.fnamemodify(vim.fn.substitute(vim.fn.findfile(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") .. ".h", vim.fn.substitute(vim.fn.expand("%:p"), "\\<unittest/.*", "include/**", ""), 1), ".*\\<include/", "", ""), ":p:h"), "[.-]", "_", "g"), "/", "::", "g") end),
     ls.text_node("::"),
@@ -123,9 +123,9 @@ return {
     ls.text_node({")", "{", "	"}),
     ls.insert_node(0),
     ls.text_node({"", "}", ""}),
-  }, { description = [[data-driven unittest]] }),
+  }),
   -- tc data-driven unittest with fixture
-  ls.snippet([[tc]], {
+  ls.snippet({ trig = [[tc]], desc = [[data-driven unittest with fixture]] }, {
     ls.text_node({"/**", " * @class "}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.fnamemodify(vim.fn.substitute(vim.fn.findfile(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") .. ".h", vim.fn.substitute(vim.fn.expand("%:p"), "\\<unittest/.*", "include/**", ""), 1), ".*\\<include/", "", ""), ":p:h"), "[.-]", "_", "g"), "/", "::", "g") end),
     ls.text_node("::"),
@@ -147,9 +147,9 @@ return {
     ls.text_node({")", "{", "	"}),
     ls.insert_node(0),
     ls.text_node({"", "}", ""}),
-  }, { description = [[data-driven unittest with fixture]] }),
+  }),
   -- stc1 unittest for sscc::*
-  ls.snippet([[stc1]], {
+  ls.snippet({ trig = [[stc1]], desc = [[unittest for sscc::*]] }, {
     ls.text_node({"/**", " * @class sscc::"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:p:h"), "/unittest\\>", "", ""), "[.-]", "_", "g"), "^.*/\\([^/]\\+\\)$", "\\1", ""), "/", "::", "g") end),
     ls.text_node("::"),
@@ -165,9 +165,9 @@ return {
     ls.text_node({", Fixture)", "{", "	"}),
     ls.insert_node(0),
     ls.text_node({"", "}", ""}),
-  }, { description = [[unittest for sscc::*]] }),
+  }),
   -- stc2 unittest for sscc::*::*
-  ls.snippet([[stc2]], {
+  ls.snippet({ trig = [[stc2]], desc = [[unittest for sscc::*::*]] }, {
     ls.text_node({"/**", " * @class sscc::"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:p:h"), "/unittest\\>", "", ""), "[.-]", "_", "g"), "^.*/\\([^/]\\+/[^/]\\+\\)$", "\\1", ""), "/", "::", "g") end),
     ls.text_node("::"),
@@ -183,9 +183,9 @@ return {
     ls.text_node({", Fixture)", "{", "	"}),
     ls.insert_node(0),
     ls.text_node({"", "}", ""}),
-  }, { description = [[unittest for sscc::*::*]] }),
+  }),
   -- stc3 unittest for sscc::*::*::*
-  ls.snippet([[stc3]], {
+  ls.snippet({ trig = [[stc3]], desc = [[unittest for sscc::*::*::*]] }, {
     ls.text_node({"/**", " * @class sscc::"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:p:h"), "/unittest\\>", "", ""), "[.-]", "_", "g"), "^.*/\\([^/]\\+/[^/]\\+/[^/]\\+\\)$", "\\1", ""), "/", "::", "g") end),
     ls.text_node("::"),
@@ -201,6 +201,7 @@ return {
     ls.text_node({", Fixture)", "{", "	"}),
     ls.insert_node(0),
     ls.text_node({"", "}", ""}),
-  }, { description = [[unittest for sscc::*::*::*]] }),
+  }),
 
 }
+

@@ -199,7 +199,7 @@ end
 return {
 
   -- header(\d*) header for include/*, header2 for 2 level dirs
-  ls.snippet({ trig = [[header(%d*)]], regTrig = true }, {
+  ls.snippet({ trig = [[header(%d*)]], regTrig = true, desc = [[header for include/*, header2 for 2 level dirs]]}, {
     ls.text_node({"/**", " * @file", " * @brief  "}),
     ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_classname(header_fqn(vim.fn.expand("%:p"), d, v)) end),
     ls.text_node({"类的声明", " * @author "}),
@@ -221,9 +221,9 @@ return {
     ls.text_node({"", "#endif  // "}),
     ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
     ls.text_node({"", ""}),
-  }, { description = [[header for include/*, header2 for 2 level dirs]] }),
+  }),
   -- src(\d*) src for src/*, src2 for 2 level dirs
-  ls.snippet({ trig = [[src(%d*)]], regTrig = true }, {
+  ls.snippet({ trig = [[src(%d*)]], regTrig = true, desc = [[src for src/*, src2 for 2 level dirs]]}, {
     ls.text_node({"/**", " * @file", " * @brief  "}),
     ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_classname(source_fqn(vim.fn.expand("%:p"), d, v)) end),
     ls.text_node({"类的定义", " * @author "}),
@@ -237,6 +237,7 @@ return {
     ls.text_node({"", ""}),
     ls.function_node(function(_, parent) return src_namespaces_close(parent) end),
     ls.text_node({"", ""}),
-  }, { description = [[src for src/*, src2 for 2 level dirs]] }),
+  }),
 
 }
+

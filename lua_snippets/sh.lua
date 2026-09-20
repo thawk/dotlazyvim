@@ -3,7 +3,7 @@ local ls = require("luasnip")
 return {
 
   -- temp Tempfile
-  ls.snippet([[temp]], {
+  ls.snippet({ trig = [[temp]], desc = [[Tempfile]] }, {
     ls.insert_node(1, "TMPFILE"),
     ls.text_node("=\"$(mktemp -t --suffix="),
     ls.insert_node(2, ".SUFFIX"),
@@ -24,9 +24,9 @@ return {
     ls.insert_node(6, ls.function_node(function(args) return "rm -f '$" .. (function(args) return (args[1][1] or ""):gsub(".*%s", "") end)({args[1]}) .. "'; exit 1" end, {1})),
     ls.function_node(function(args) return (args[1][1] or ""):gsub("(.+)", "\" 1 15    # HUP TERM\n") end, {6}),
     ls.text_node({"", "", ""}),
-  }, { description = [[Tempfile]] }),
+  }),
   -- temp TempDir
-  ls.snippet([[temp]], {
+  ls.snippet({ trig = [[temp]], desc = [[TempDir]] }, {
     ls.insert_node(1, "TMPDIR"),
     ls.text_node("=\"$(mktemp -d "),
     ls.insert_node(2, ls.function_node(function()
@@ -43,9 +43,9 @@ return {
     ls.text_node({"'; exit 1\" 1 15    # HUP TERM", ""}),
     ls.insert_node(0),
     ls.text_node({"", ""}),
-  }, { description = [[TempDir]] }),
+  }),
   -- plugin dotfiles plugin bootstrap.sh
-  ls.snippet([[plugin]], {
+  ls.snippet({ trig = [[plugin]], desc = [[dotfiles plugin bootstrap.sh]] }, {
     ls.text_node({"source \"$(dirname \"$(dirname \"${BASH_SOURCE[0]}\")\")/util.sh\"", "init_plugin \""}),
     ls.insert_node(1, ls.function_node(function() return vim.fn.fnamemodify(vim.fn.expand("%:p"), ":h:t") end)),
     ls.text_node({"\"", ""}),
@@ -55,6 +55,7 @@ return {
     ls.text_node({")\"", ""}),
     ls.insert_node(0),
     ls.text_node({"", ""}),
-  }, { description = [[dotfiles plugin bootstrap.sh]] }),
+  }),
 
 }
+

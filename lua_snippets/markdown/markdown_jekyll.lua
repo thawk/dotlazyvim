@@ -10,7 +10,7 @@ end
 return {
 
   -- post Jekyll post header
-  ls.snippet([[post]], {
+  ls.snippet({ trig = [[post]], desc = [[Jekyll post header]] }, {
     ls.text_node({"---", "title: "}),
     ls.insert_node(1, "title"),
     ls.text_node({"", "layout: single", "guid: "}),
@@ -24,9 +24,9 @@ return {
     ls.text_node({"", "---", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", ""}),
-  }, { description = [[Jekyll post header]] }),
+  }),
   -- /img jekyll image path completion
-  ls.snippet([[/img]], {
+  ls.snippet({ trig = [[/img]], desc = [[jekyll image path completion]] }, {
     ls.text_node("/"),
     ls.insert_node(1, "images"),
     ls.text_node("/"),
@@ -38,6 +38,7 @@ return {
     ls.text_node("/"),
     ls.insert_node(2, "file.png"),
     ls.text_node({"", ""}),
-  }, { description = [[jekyll image path completion]] }),
+  }),
 
 }
+

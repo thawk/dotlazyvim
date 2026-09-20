@@ -3,7 +3,7 @@ local ls = require("luasnip")
 return {
 
   -- skel Notes
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[Notes]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -57,9 +57,9 @@ return {
     ls.text_node("Melody\" = \\\""),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({"Notes\"", ""}),
-  }, { description = [[Notes]] }),
+  }),
   -- skel Notes with lyric
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[Notes with lyric]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -117,9 +117,9 @@ return {
     ls.text_node({"Key\" {", "		\\\""}),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({"MelodyC\"", "	}", "}", ""}),
-  }, { description = [[Notes with lyric]] }),
+  }),
   -- skel Parallel Notes (one staff)
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[Parallel Notes (one staff)]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -161,9 +161,9 @@ return {
     ls.text_node("Melody\" = \\\""),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({"Notes\"", ""}),
-  }, { description = [[Parallel Notes (one staff)]] }),
+  }),
   -- skel Parallel Notes (1 staffs with lyric)
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[Parallel Notes (1 staffs with lyric)]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -207,9 +207,9 @@ return {
     ls.text_node({"Melody\" =", "{", "	<<", "		\\new Voice = \"melody\" {", "			"}),
     ls.function_node(function(args) return args[1][1] or "" end, {8}),
     ls.text_node({"", "", "			<<", "				\\new Voice {", "					\\voiceThree", "					\\relative c'' {", "						\\preludeM", "					}", "				}", "				{", "					\\voiceOne", "					\\relative c'' {", "						\\melody", "					}", "				}", "			>>", "		}", "		\\new Lyrics \\lyricsto \"melody\" {", "			\\verse", "		}", "	>>", "}", ""}),
-  }, { description = [[Parallel Notes (1 staffs with lyric)]] }),
+  }),
   -- skel Parallel Notes (two staffs)
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[Parallel Notes (two staffs)]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -251,9 +251,9 @@ return {
     ls.text_node("Melody\" = \\\""),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({"Notes\"", ""}),
-  }, { description = [[Parallel Notes (two staffs)]] }),
+  }),
   -- skel Parallel Notes (two staffs separated)
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[Parallel Notes (two staffs separated)]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -295,9 +295,9 @@ return {
     ls.text_node("Melody\" = \\\""),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({"Notes\"", ""}),
-  }, { description = [[Parallel Notes (two staffs separated)]] }),
+  }),
   -- skel 普通高低音部，带和弦和歌词
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[普通高低音部，带和弦和歌词]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node("Piece\" = \""),
@@ -365,6 +365,7 @@ return {
     ls.text_node("Melody\" = \\\""),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({"Notes\"", ""}),
-  }, { description = [[普通高低音部，带和弦和歌词]] }),
+  }),
 
 }
+

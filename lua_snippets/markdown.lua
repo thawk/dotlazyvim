@@ -3,23 +3,23 @@ local ls = require("luasnip")
 return {
 
   -- skel 
-  ls.snippet([[skel]], {
+  ls.snippet({ trig = [[skel]], desc = [[]] }, {
     ls.text_node("# "),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node({"", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", ""}),
-  }, { description = [[]] }),
+  }),
   -- design 设计报告
-  ls.snippet([[design]], {
+  ls.snippet({ trig = [[design]], desc = [[设计报告]] }, {
     ls.text_node("# "),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node({"", "", "## 背景", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", "", "## 目标", "", "### 需求", "", "### 约束", "", "## 方案", "", "### 要点", "", "### 优点", "", "### 缺点", "", "## 建议", "", "## 实现", "", ""}),
-  }, { description = [[设计报告]] }),
+  }),
   -- refl Reference Link
-  ls.snippet([[refl]], {
+  ls.snippet({ trig = [[refl]], desc = [[Reference Link]] }, {
     ls.text_node("["),
     ls.insert_node(1, ls.function_node(function(_, parent)
       local sel = parent and (parent.snippet and parent.snippet.env or parent.env) and (parent.snippet and parent.snippet.env or parent.env).LS_SELECT_RAW
@@ -46,6 +46,7 @@ return {
     ls.text_node(" \""),
     ls.insert_node(4, ls.function_node(function(args) return args[1][1] or "" end, {3})),
     ls.text_node({"\"", ""}),
-  }, { wordTrig = true, description = [[Reference Link]] }),
+  }),
 
 }
+

@@ -3,7 +3,7 @@ local ls = require("luasnip")
 return {
 
   -- melody xxMelody
-  ls.snippet([[melody]], {
+  ls.snippet({ trig = [[melody]], desc = [[xxMelody]] }, {
     ls.text_node("\""),
     ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
     ls.text_node({"Melody\" =", "{", "	\\key "}),
@@ -15,6 +15,7 @@ return {
     ls.text_node({" {", "		\\tempo 4 = "}),
     ls.insert_node(4, "60"),
     ls.text_node({"", "		\\melody", "	}", "}", ""}),
-  }, { description = [[xxMelody]] }),
+  }),
 
 }
+
