@@ -1,0 +1,86 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "all",
+        "path": "./all.json"
+      },
+      {
+        "language": "cucumber",
+        "path": "./behave.json"
+      },
+      {
+        "language": "html",
+        "path": "./html.json"
+      },
+      {
+        "language": "html",
+        "path": "./impressjs.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript/node.json"
+      },
+      {
+        "language": "lilypond",
+        "path": "./lilypond.json"
+      },
+      {
+        "language": "lilypond",
+        "path": "./lilypond/additional.json"
+      },
+      {
+        "language": "lilypond",
+        "path": "./lilypond/skel.json"
+      },
+      {
+        "language": "make",
+        "path": "./make.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown/blocks.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown/mermaid.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown/skel.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/behave.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/click.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/import.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/routine.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/skel.json"
+      },
+      {
+        "language": "revealjs",
+        "path": "./revealjs.json"
+      },
+      {
+        "language": "sh",
+        "path": "./sh.json"
+      }
+    ]
+  }
+}

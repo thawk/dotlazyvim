@@ -66,10 +66,13 @@
       "\t% \\tempo 4 = 96",
       "",
       "\t${0}",
-      "}",
-      "endsnippet\t",
-      "",
-      "snippet absolute \"Absolute notes\"",
+      "}"
+    ],
+    "description": "Relative notes"
+  },
+  "absolute": {
+    "prefix": "absolute",
+    "body": [
       "\\absolute",
       "{",
       "\t\\clef \"treble\"",
@@ -78,13 +81,16 @@
       "\t% \\tempo 4. = 96",
       "",
       "\t${0}",
-      "}",
-      "endsnippet\t",
-      "",
-      "snippet key \"Key\" b",
+      "}"
+    ],
+    "description": "Absolute notes"
+  },
+  "key": {
+    "prefix": "key",
+    "body": [
       "\\key ${1:c} ${2:\\major}"
     ],
-    "description": "Relative notes"
+    "description": "Key"
   },
   "bar": {
     "prefix": "bar",
