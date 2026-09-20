@@ -5,7 +5,12 @@ return {
   -- skel 
   ls.snippet({ trig = [[skel]], desc = [[]] }, {
     ls.text_node("# "),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.expand("%:t:r")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({"", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", ""}),
@@ -13,7 +18,12 @@ return {
   -- design 设计报告
   ls.snippet({ trig = [[design]], desc = [[设计报告]] }, {
     ls.text_node("# "),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.expand("%:t:r")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({"", "", "## 背景", "", ""}),
     ls.insert_node(0),
     ls.text_node({"", "", "## 目标", "", "### 需求", "", "### 约束", "", "## 方案", "", "### 要点", "", "### 优点", "", "### 缺点", "", "## 建议", "", "## 实现", "", ""}),
@@ -21,16 +31,19 @@ return {
   -- refl Reference Link
   ls.snippet({ trig = [[refl]], desc = [[Reference Link]] }, {
     ls.text_node("["),
-    ls.insert_node(1, ls.function_node(function(_, parent)
-      local sel = parent and (parent.snippet and parent.snippet.env or parent.env) and (parent.snippet and parent.snippet.env or parent.env).LS_SELECT_RAW
-      if type(sel) == "table" then
-        local txt = table.concat(sel, "\n")
-        if txt ~= "" then return sel end
-      elseif type(sel) == "string" then
-        if sel ~= "" then return {sel} end
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        local sel = parent and (parent.snippet and parent.snippet.env or parent.env) and (parent.snippet and parent.snippet.env or parent.env).LS_SELECT_RAW
+        if type(sel) == "table" then
+          local txt = table.concat(sel, "\n")
+          if txt ~= "" then return sel end
+        elseif type(sel) == "string" then
+          if sel ~= "" then return {sel} end
+        end
+        return {"Text"}
       end
-      return {"Text"}
-    end)),
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node("]["),
     ls.insert_node(2, "id"),
     ls.text_node("]"),
@@ -44,7 +57,12 @@ return {
     ls.text_node("]: "),
     ls.insert_node(3, "url"),
     ls.text_node(" \""),
-    ls.insert_node(4, ls.function_node(function(args) return args[1][1] or "" end, {3})),
+    ls.d(4, function(args, parent)
+      local function __dyn_val()
+        return args[1][1] or ""
+      end
+      return ls.sn(nil, { ls.i(4, __dyn_val()) })
+    end, {3}),
     ls.text_node({"\"", ""}),
   }),
 

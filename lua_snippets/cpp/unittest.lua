@@ -13,7 +13,12 @@ return {
     ls.text_node({");", "", "struct Fixture", "{", "	"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\(.\\)", "\\u\\1", ""),"_\\(.\\)","\\u\\1","g") end),
     ls.text_node(" "),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({";", "", "	Fixture()", "	: "}),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node("("),
@@ -33,7 +38,12 @@ return {
     ls.text_node({");", "", "struct Fixture", "{", "	"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\(.\\)", "\\u\\1", ""),"_\\(.\\)","\\u\\1","g") end),
     ls.text_node(" "),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({";", "", "	Fixture()", "	: "}),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node("("),
@@ -53,7 +63,12 @@ return {
     ls.text_node({");", "", "struct Fixture", "{", "	"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\(.\\)", "\\u\\1", ""),"_\\(.\\)","\\u\\1","g") end),
     ls.text_node(" "),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({";", "", "	Fixture()", "	: "}),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node("("),
@@ -73,7 +88,12 @@ return {
     ls.text_node({");", "", "struct Fixture", "{", "	"}),
     ls.function_node(function() return vim.fn.substitute(vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\(.\\)", "\\u\\1", ""),"_\\(.\\)","\\u\\1","g") end),
     ls.text_node(" "),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.substitute(vim.fn.expand("%:t:r"), "^test_\\?", "", "")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({";", "", "	Fixture()", "	: "}),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node("("),

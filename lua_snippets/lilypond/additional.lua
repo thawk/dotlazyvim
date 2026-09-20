@@ -5,7 +5,12 @@ return {
   -- transexec 十二大调转调练习
   ls.snippet({ trig = [[transexec]], desc = [[十二大调转调练习]] }, {
     ls.text_node({"\\version \"2.23.2\"", "", "\\include \"../global.ily\"", "", "\\header {", "	title = \"转调练习-"}),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.substitute(vim.fn.expand("%:t:r"), "转调练习-", "", "") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.substitute(vim.fn.expand("%:t:r"), "转调练习-", "", "")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({"\"", "}", "", "\\include \"../notes/"}),
     ls.function_node(function(args) return args[1][1] or "" end, {1}),
     ls.text_node({".ily\"", "", "Notes = \\transpose c c {", "	\\\""}),

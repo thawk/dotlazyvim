@@ -5,9 +5,19 @@ return {
   -- melody xxMelody
   ls.snippet({ trig = [[melody]], desc = [[xxMelody]] }, {
     ls.text_node("\""),
-    ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
+    ls.d(1, function(args, parent)
+      local function __dyn_val()
+        return vim.fn.expand("%:t:r")
+      end
+      return ls.sn(nil, { ls.i(1, __dyn_val()) })
+    end),
     ls.text_node({"Melody\" =", "{", "	\\key "}),
-    ls.insert_node(2, ls.function_node(function(args) return "\\\"" .. (function(args) return args[1][1] or "" end)({args[1]}) .. "Key\"" end, {1})),
+    ls.d(2, function(args, parent)
+      local function __dyn_val()
+        return "\\\"" .. (function(args) return args[1][1] or "" end)({args[1]}) .. "Key\""
+      end
+      return ls.sn(nil, { ls.i(2, __dyn_val()) })
+    end, {1}),
     ls.text_node(" "),
     ls.insert_node(3, "\\major"),
     ls.text_node({"", "	\\transpose c "}),
