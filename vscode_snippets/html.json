@@ -1,27 +1,27 @@
 {
-    "script": {
-        "prefix": "script",
-        "body": [
-            "<script type=\"${1:text/template}\">",
-            "\t$TM_SELECTED_TEXT$0",
-            "</script>"
-        ],
-        "description": "<script type=?>"
-    },
-    "script_2": {
-        "prefix": "script",
-        "body": [
-            "<script charset=\"utf-8\">",
-            "\t${0:$TM_SELECTED_TEXT}",
-            "</script>"
-        ],
-        "description": "HTML inline <script>"
-    },
-    "script_3": {
-        "prefix": "script",
-        "body": [
-            "<script src=\"$1\" charset=\"${3:utf-8}\"></script>"
-        ],
-        "description": "HTML <script src...>"
-    }
+  "script": {
+    "prefix": "script",
+    "body": [
+      "<script type=\"${1:text/template}\">",
+      "\t$TM_SELECTED_TEXT$0",
+      "</script>"
+    ],
+    "description": "<script type=?>"
+  },
+  "script_2": {
+    "prefix": "script",
+    "body": [
+      "<script charset=\"utf-8\">",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "</script>"
+    ],
+    "description": "HTML inline <script>"
+  },
+  "script_3": {
+    "prefix": "script",
+    "body": [
+      "<script src=\"$1\" charset=\"${3:utf-8}\"></script>"
+    ],
+    "description": "HTML <script src...>"
+  }
 }

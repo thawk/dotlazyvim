@@ -1,4 +1,11 @@
 local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
+local fmt = require("luasnip.extras.fmt").fmt
 local function get_capture_str(parent)
   local caps = (parent and parent.captures)
     or (parent and parent.snippet and parent.snippet.captures)
@@ -199,45 +206,58 @@ end
 return {
 
   -- header(\d*) header for include/*, header2 for 2 level dirs
-  ls.snippet({ trig = [[header(%d*)]], regTrig = true, desc = [[header for include/*, header2 for 2 level dirs]]}, {
-    ls.text_node({"/**", " * @file", " * @brief  "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_classname(header_fqn(vim.fn.expand("%:p"), d, v)) end),
-    ls.text_node({"类的声明", " * @author "}),
-    ls.function_node(function() return vim.env.USER or "" end),
-    ls.text_node({"", " */", "#ifndef "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
-    ls.text_node({"", "#define "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
-    ls.text_node({"", ""}),
-    ls.function_node(function(_, parent) return header_namespaces_open(parent) end),
-    ls.text_node({"", "/**", " * @brief "}),
-    ls.insert_node(1),
-    ls.text_node({"", " */", "class "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_classname(header_fqn(vim.fn.expand("%:p"), d, v)) end),
-    ls.text_node({"", "{", "public:", "    "}),
-    ls.insert_node(0),
-    ls.text_node({"", "};", ""}),
-    ls.function_node(function(_, parent) return header_namespaces_close(parent) end),
-    ls.text_node({"", "#endif  // "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
-    ls.text_node({"", ""}),
-  }),
+  s({ trig = [[header(%d*)]], regTrig = true, desc = [[header for include/*, header2 for 2 level dirs]] }, fmt([[
+/**
+ * @file
+ * @brief  ^x1&类的声明
+ * @author ^x2&
+ */
+#ifndef ^x3&
+#define ^x4&
+^x5&
+/**
+ * @brief ^1&
+ */
+class ^x6&
+{
+public:
+    ^0&
+};
+^x7&
+#endif  // ^x8&
+
+]], {
+  x1 = f(function(_, parent) local d, v = context(parent) return fqn_to_classname(header_fqn(vim.fn.expand("%:p"), d, v)) end),
+  x2 = f(function() return vim.env.USER or "" end),
+  x3 = f(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
+  x4 = f(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
+  x5 = f(function(_, parent) return header_namespaces_open(parent) end),
+  [1] = i(1),
+  x6 = f(function(_, parent) local d, v = context(parent) return fqn_to_classname(header_fqn(vim.fn.expand("%:p"), d, v)) end),
+  [0] = i(0),
+  x7 = f(function(_, parent) return header_namespaces_close(parent) end),
+  x8 = f(function(_, parent) local d, v = context(parent) return fqn_to_guard(header_fqn(vim.fn.expand("%:p"), d, v)) end),
+}, { delimiters = "^&", repeat_duplicates = true })),
   -- src(\d*) src for src/*, src2 for 2 level dirs
-  ls.snippet({ trig = [[src(%d*)]], regTrig = true, desc = [[src for src/*, src2 for 2 level dirs]]}, {
-    ls.text_node({"/**", " * @file", " * @brief  "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return fqn_to_classname(source_fqn(vim.fn.expand("%:p"), d, v)) end),
-    ls.text_node({"类的定义", " * @author "}),
-    ls.function_node(function() return vim.env.USER or "" end),
-    ls.text_node({"", " */", "#include "}),
-    ls.function_node(function(_, parent) local d, v = context(parent) return source_include(vim.fn.expand("%:p"), d, v) end),
-    ls.text_node({"", ""}),
-    ls.function_node(function(_, parent) return src_namespaces_open(parent) end),
-    ls.text_node({"", "", ""}),
-    ls.insert_node(0),
-    ls.text_node({"", ""}),
-    ls.function_node(function(_, parent) return src_namespaces_close(parent) end),
-    ls.text_node({"", ""}),
-  }),
+  s({ trig = [[src(%d*)]], regTrig = true, desc = [[src for src/*, src2 for 2 level dirs]] }, fmt([[
+/**
+ * @file
+ * @brief  ^x1&类的定义
+ * @author ^x2&
+ */
+#include ^x3&
+^x4&
+
+^0&
+^x5&
+
+]], {
+  x1 = f(function(_, parent) local d, v = context(parent) return fqn_to_classname(source_fqn(vim.fn.expand("%:p"), d, v)) end),
+  x2 = f(function() return vim.env.USER or "" end),
+  x3 = f(function(_, parent) local d, v = context(parent) return source_include(vim.fn.expand("%:p"), d, v) end),
+  x4 = f(function(_, parent) return src_namespaces_open(parent) end),
+  [0] = i(0),
+  x5 = f(function(_, parent) return src_namespaces_close(parent) end),
+}, { delimiters = "^&", repeat_duplicates = true })),
 
 }
-

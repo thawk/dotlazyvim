@@ -1,4 +1,11 @@
 local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
+local fmt = require("luasnip.extras.fmt").fmt
 local function uuid4()
   math.randomseed(os.time() * 1000 + (vim.fn.getpid() or 0))
   return (string.gsub("xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx", "[xy]", function(c)
@@ -10,35 +17,40 @@ end
 return {
 
   -- post Jekyll post header
-  ls.snippet({ trig = [[post]], desc = [[Jekyll post header]] }, {
-    ls.text_node({"---", "title: "}),
-    ls.insert_node(1, "title"),
-    ls.text_node({"", "layout: single", "guid: "}),
-    ls.function_node(function() return uuid4() end),
-    ls.text_node({"", "date: "}),
-    ls.function_node(function() return os.date("%Y-%m-%d %H:%M:%S") end),
-    ls.text_node({"", "categories:", "  - "}),
-    ls.insert_node(2),
-    ls.text_node({"", "tags:", "  - "}),
-    ls.insert_node(3),
-    ls.text_node({"", "---", "", ""}),
-    ls.insert_node(0),
-    ls.text_node({"", ""}),
-  }),
+  s({ trig = [[post]], desc = [[Jekyll post header]] }, fmt([[
+---
+title: @1?
+layout: single
+guid: @x1?
+date: @x2?
+categories:
+  - @2?
+tags:
+  - @3?
+---
+
+@0?
+
+]], {
+  [1] = i(1, "title"),
+  x1 = f(function() return uuid4() end),
+  x2 = f(function() return os.date("%Y-%m-%d %H:%M:%S") end),
+  [2] = i(2),
+  [3] = i(3),
+  [0] = i(0),
+}, { delimiters = "@?", repeat_duplicates = true })),
   -- /img jekyll image path completion
-  ls.snippet({ trig = [[/img]], desc = [[jekyll image path completion]] }, {
-    ls.text_node("/"),
-    ls.insert_node(1, "images"),
-    ls.text_node("/"),
-    ls.function_node(function()
+  s({ trig = [[/img]], desc = [[jekyll image path completion]] }, fmt([[
+/@1?/@x1?/@2?
+
+]], {
+  [1] = i(1, "images"),
+  x1 = f(function()
       local p = vim.split(vim.fn.expand("%:t"), "-", {plain=true})
       if #p >= 3 then return table.concat({p[1], p[2], p[3]}, "/") end
       return ""
     end),
-    ls.text_node("/"),
-    ls.insert_node(2, "file.png"),
-    ls.text_node({"", ""}),
-  }),
+  [2] = i(2, "file.png"),
+}, { delimiters = "@?", repeat_duplicates = true })),
 
 }
-

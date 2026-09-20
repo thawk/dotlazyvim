@@ -13,60 +13,60 @@
     ],
     "description": "\\break"
   },
-    "break_2": {
-        "prefix": "break",
-        "body": [
-            "\\\\breakFor \"${1:a4}\""
-        ],
-        "description": "\\breakFor a4"
-    },
-    "break_3": {
-        "prefix": "break",
-        "body": [
-            "\\\\breakFor #'(${1:\"a4\" \"a5\"})"
-        ],
-        "description": "\\breakFor #'(a4 a5)"
-    },
-    "break_4": {
-        "prefix": "break",
-        "body": [
-            "\\noBreak"
-        ],
-        "description": "\\noBreak"
-    },
-    "break_5": {
-        "prefix": "break",
-        "body": [
-            "\\\\noBreakFor \"${1:a4}\""
-        ],
-        "description": "\\noBreakFor a4"
-    },
-    "break_6": {
-        "prefix": "break",
-        "body": [
-            "\\\\noBreakFor #'(${1:\"a4\" \"a5\"})"
-        ],
-        "description": "\\noBreakFor #'(a4 a5)"
-    },
-    "break_7": {
-        "prefix": "break",
-        "body": [
-            "\\pageBreak"
-        ],
-        "description": "\\pageBreak"
-    },
-    "break_8": {
-        "prefix": "break",
-        "body": [
-            "\\\\pageBreakFor \"${1:a4}\""
-        ],
-        "description": "\\pageBreakFor a4"
-    },
-    "break_9": {
-        "prefix": "break",
-        "body": [
-            "\\\\pageBreakFor #'(${1:\"a4\" \"a5\"})"
-        ],
-        "description": "\\pageBreakFor #'(a4 a5)"
-    }
+  "break_2": {
+    "prefix": "break",
+    "body": [
+      "\\\\breakFor \"${1:a4}\""
+    ],
+    "description": "\\breakFor a4"
+  },
+  "break_3": {
+    "prefix": "break",
+    "body": [
+      "\\\\breakFor #'(${1:\"a4\" \"a5\"})"
+    ],
+    "description": "\\breakFor #'(a4 a5)"
+  },
+  "break_4": {
+    "prefix": "break",
+    "body": [
+      "\\noBreak"
+    ],
+    "description": "\\noBreak"
+  },
+  "break_5": {
+    "prefix": "break",
+    "body": [
+      "\\\\noBreakFor \"${1:a4}\""
+    ],
+    "description": "\\noBreakFor a4"
+  },
+  "break_6": {
+    "prefix": "break",
+    "body": [
+      "\\\\noBreakFor #'(${1:\"a4\" \"a5\"})"
+    ],
+    "description": "\\noBreakFor #'(a4 a5)"
+  },
+  "break_7": {
+    "prefix": "break",
+    "body": [
+      "\\pageBreak"
+    ],
+    "description": "\\pageBreak"
+  },
+  "break_8": {
+    "prefix": "break",
+    "body": [
+      "\\\\pageBreakFor \"${1:a4}\""
+    ],
+    "description": "\\pageBreakFor a4"
+  },
+  "break_9": {
+    "prefix": "break",
+    "body": [
+      "\\\\pageBreakFor #'(${1:\"a4\" \"a5\"})"
+    ],
+    "description": "\\pageBreakFor #'(a4 a5)"
+  }
 }

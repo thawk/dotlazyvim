@@ -1,31 +1,30 @@
 local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
+local fmt = require("luasnip.extras.fmt").fmt
 
 return {
 
   -- melody xxMelody
-  ls.snippet({ trig = [[melody]], desc = [[xxMelody]] }, {
-    ls.text_node("\""),
-    ls.d(1, function(args, parent)
-      local function __dyn_val()
-        return vim.fn.expand("%:t:r")
-      end
-      return ls.sn(nil, { ls.i(1, __dyn_val()) })
-    end),
-    ls.text_node({"Melody\" =", "{", "	\\key "}),
-    ls.d(2, function(args, parent)
-      local function __dyn_val()
-        return "\\\"" .. (function(args) return args[1][1] or "" end)({args[1]}) .. "Key\""
-      end
-      return ls.sn(nil, { ls.i(2, __dyn_val()) })
-    end, {1}),
-    ls.text_node(" "),
-    ls.insert_node(3, "\\major"),
-    ls.text_node({"", "	\\transpose c "}),
-    ls.function_node(function(args) return args[1][1] or "" end, {2}),
-    ls.text_node({" {", "		\\tempo 4 = "}),
-    ls.insert_node(4, "60"),
-    ls.text_node({"", "		\\melody", "	}", "}", ""}),
-  }),
-
+  s({ trig = [[melody]], desc = [[xxMelody]] }, fmt([[
+"@1?Melody" =
+{
+	\key @2? @3?
+	\transpose c @2? {
+		\tempo 4 = @4?
+		\melody
+	}
 }
 
+]], {
+  [1] = d(1, function(args, parent) return sn(nil, { i(1, vim.fn.expand("%:t:r")) }) end),
+  [2] = d(2, function(args, parent) return sn(nil, { i(2, "\\\"" .. (function(args) return args[1][1] or "" end)({args[1]}) .. "Key\"") }) end, {1}),
+  [3] = i(3, "\\major"),
+  [4] = i(4, "60"),
+}, { delimiters = "@?", repeat_duplicates = true })),
+
+}
