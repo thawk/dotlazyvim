@@ -52,12 +52,41 @@
     "markdown": {
         "prefix": "markdown",
         "body": [
+            "<section data-markdown>",
+            "\t<script type=\"text/template\">",
+            "\t\t$0",
+            "\t</script>",
+            "</section>"
+        ],
+        "description": "reveal.js markdown section w/ script"
+    },
+    "markdown_2": {
+        "prefix": "markdown",
+        "body": [
+            "<section data-markdown>",
+            "\t<textarea data-template>",
+            "\t\t$0",
+            "\t</textarea>",
+            "</section>"
+        ],
+        "description": "reveal.js markdown section w/ textarea"
+    },
+    "markdown_3": {
+        "prefix": "markdown",
+        "body": [
             "<section data-markdown=\"${1:content.md}\">",
             "</section>"
         ],
         "description": "reveal.js markdown w/ external file"
     },
     ".elem": {
+        "prefix": ".elem",
+        "body": [
+            "<!-- .element: ${1:class=\"${2:fragment}\"} -->$0"
+        ],
+        "description": "reveal.js markdown element attributes"
+    },
+    ".elem_2": {
         "prefix": ".elem",
         "body": [
             "&shy;<!-- .element: ${1:class=\"${2:fragment}\"} -->$0"
@@ -67,11 +96,27 @@
     ".slide": {
         "prefix": ".slide",
         "body": [
+            "<!-- .slide: ${1:data-background=\"${2:#ff0000}\"} -->$0"
+        ],
+        "description": "reveal.js markdown slide attributes"
+    },
+    ".slide_2": {
+        "prefix": ".slide",
+        "body": [
             "<!-- .slide: ${1:class=\"${2:title}\"} -->$0"
         ],
         "description": "reveal.js markdown title slide"
     },
     "notes": {
+        "prefix": "notes",
+        "body": [
+            "<aside class=\"notes\">",
+            "\t${1:speak notes}",
+            "</aside>$0"
+        ],
+        "description": "reveal.js HTML notes"
+    },
+    "notes_2": {
         "prefix": "notes",
         "body": [
             "notes: ${1:speak notes}"

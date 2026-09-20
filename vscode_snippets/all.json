@@ -1,4 +1,11 @@
 {
+    "datew": {
+        "prefix": "datew",
+        "body": [
+            "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_DAY_NAME"
+        ],
+        "description": "YYYY-MM-DD with weekday"
+    },
     "md//": {
         "prefix": "md//",
         "body": [

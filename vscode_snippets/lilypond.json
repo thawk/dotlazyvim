@@ -24,7 +24,7 @@
             "\t\t}",
             "\t}",
             "}",
-            "$0"
+            "${0}"
         ],
         "description": "Paper setting"
     },
@@ -33,7 +33,7 @@
         "body": [
             "\\bookpart {",
             "\t\\header {",
-            "\t\tsubtitle = \"$1\"",
+            "\t\tsubtitle = \"${1}\"",
             "\t}",
             "\t$0",
             "}"
@@ -45,40 +45,15 @@
         "body": [
             "\\score {",
             "\t\\header {",
-            "\t\tpiece = \"${1:示例曲谱}\"",
+            "\t\tpiece = \"${1:title}\"",
+            "\t\t% opus = \"\"",
+            "\t\t% composer = \"\"",
             "\t}",
             "",
-            "\t\\new GrandStaff <<",
-            "\t\t\\chords {",
-            "\t\t\t% 和弦功能",
-            "\t\t\t\\set noChordSymbol = \"\"",
-            "",
-            "\t\t\t$0",
-            "\t\t}",
-            "\t\t\\new Staff {",
-            "\t\t\t\\relative c' {",
-            "\t\t\t\t\\clef \"treble\"",
-            "\t\t\t\t\\key c \\major",
-            "\t\t\t\t\\time 4/4",
-            "\t\t\t\t% 高音部",
-            "\t\t\t\t",
-            "\t\t\t\t\\bar \"|.\"",
-            "\t\t\t}",
-            "\t\t}",
-            "\t\t\\new Staff {",
-            "\t\t\t\\relative c {",
-            "\t\t\t\t\\clef \"bass\"",
-            "\t\t\t\t\\key c \\major",
-            "\t\t\t\t\\time 4/4",
-            "\t\t\t\t% 低音部",
-            "\t\t\t\t",
-            "\t\t\t\t\\bar \"|.\"",
-            "\t\t\t}",
-            "\t\t}",
-            "\t>>",
+            "\t${0:relative}",
             "}"
         ],
-        "description": "带高低音部和和弦"
+        "description": "score"
     },
     "relative": {
         "prefix": "relative",
@@ -90,7 +65,7 @@
             "\t\\time ${5:4/4}",
             "\t% \\tempo 4 = 96",
             "",
-            "\t$0",
+            "\t${0}",
             "}",
             "endsnippet\t",
             "",
@@ -102,7 +77,7 @@
             "\t\\time ${4:4/4}",
             "\t% \\tempo 4. = 96",
             "",
-            "\t$0",
+            "\t${0}",
             "}",
             "endsnippet\t",
             "",
@@ -114,14 +89,14 @@
     "bar": {
         "prefix": "bar",
         "body": [
-            "\\bar \"${1:||}\" $0"
+            "\\bar \"${1:||}\" ${0}"
         ],
         "description": "Bar"
     },
     "tuplet": {
         "prefix": "tuplet",
         "body": [
-            "\\tuplet ${1:3/2} { $2 } $0"
+            "\\tuplet ${1:3/2} { ${2} } ${0}"
         ],
         "description": "Tuplet连音"
     },
@@ -157,7 +132,7 @@
         "prefix": "transpose",
         "body": [
             "\\transpose ${1:c} ${2:f} {",
-            "\t$0",
+            "\t${0}",
             "}"
         ],
         "description": "transpose"
@@ -172,13 +147,15 @@
     "toci": {
         "prefix": "toci",
         "body": [
-            "\\tocItem \\markup \\\\\"$1\""
+            "\\tocItem \\markup \\\\\"${1}\""
         ],
         "description": "tocItem"
     },
     "inote": {
         "prefix": "inote",
         "body": [
+            "\\\\pageBreak",
+            "",
             "\\\\include \"../${1:sheets}/${2:name}.ily\"",
             "",
             "\\\\tocItem \\markup \\concat { \\\\\"${3:$2}Piece\" \"\" }",
@@ -195,16 +172,43 @@
             "\t\tsubtitle = \\\\\"$3Subtitle\"",
             "\t}",
             "}",
-            "$0"
+            "${0}"
         ],
         "description": "include note"
     },
     "repeat": {
         "prefix": "repeat",
         "body": [
+            "\\repeat volta ${1:2}",
+            "{",
+            "\t${0}",
+            "}"
+        ],
+        "description": "repeat"
+    },
+    "repeat_2": {
+        "prefix": "repeat",
+        "body": [
+            "\\repeat volta 2",
+            "{",
+            "\t${0}",
+            "}",
+            "\\alternative",
+            "{",
+            "\t{",
+            "\t}",
+            "\t{",
+            "\t}",
+            "}"
+        ],
+        "description": "repeat with alternative"
+    },
+    "repeat_3": {
+        "prefix": "repeat",
+        "body": [
             "\\repeat volta 3",
             "{",
-            "\t$0",
+            "\t${0}",
             "}",
             "\\alternative",
             "{",
@@ -221,7 +225,7 @@
         "body": [
             "\\partial ${1:duration}"
         ],
-        "description": ""
+        "description": "partial"
     },
     "func": {
         "prefix": "func",
@@ -231,7 +235,7 @@
             "\t\t(parser location ${2:note})",
             "\t\t(${3:ly:music?})",
             "\t#{",
-            "\t\t$0",
+            "\t\t${0}",
             "\t#})"
         ],
         "description": "define music functin"
@@ -241,7 +245,7 @@
         "body": [
             "\\parallelMusic #'(${1:melody} ${2:harmony}) {",
             "\t% Bar 1",
-            "\t$0 |",
+            "\t${0} |",
             "\t|",
             "",
             "\t% Bar 2",
@@ -265,7 +269,7 @@
             "\\override Rest.color       = #(x11-color '$1)",
             "\\override Stem.color       = #(x11-color '$1)",
             "\\override Tie.color        = #(x11-color '$1)",
-            "$0"
+            "${0}"
         ],
         "description": "override colors"
     },
@@ -290,7 +294,7 @@
         "prefix": "skip",
         "body": [
             "\\repeat unfold ${1:note_count} { \\skip 1 }",
-            "$0"
+            "${0}"
         ],
         "description": "skip some notes"
     },
@@ -304,11 +308,49 @@
     "coda": {
         "prefix": "coda",
         "body": [
+            "\\mark \\markup { \\fontsize #-2 \\musicglyph \"scripts.coda\" }"
+        ],
+        "description": "Coda sign"
+    },
+    "coda_2": {
+        "prefix": "coda",
+        "body": [
+            "\\mark \\markup { \\fontsize #-2 \\line { \\musicglyph \"scripts.coda\" \"Coda\" } }"
+        ],
+        "description": "Coda"
+    },
+    "coda_3": {
+        "prefix": "coda",
+        "body": [
             "\\mark \\markup { \\fontsize #-2 \\line { \"To Coda \" \\musicglyph \"scripts.coda\" } }"
         ],
         "description": "To Coda"
     },
     "ds": {
+        "prefix": "ds",
+        "body": [
+            "\\bar \"||\" ",
+            "\\mark \\markup \\line { \"D.S. al\" \\raise #1 \\musicglyph #\"scripts.coda\" }"
+        ],
+        "description": "D.S. al Coda"
+    },
+    "ds_2": {
+        "prefix": "ds",
+        "body": [
+            "\\bar \"||\" ",
+            "\\mark \\markup { \\fontsize #-2 \"D.S.\" }"
+        ],
+        "description": "D.S."
+    },
+    "ds_3": {
+        "prefix": "ds",
+        "body": [
+            "\\bar \"||\" ",
+            "\\mark \\markup { \\fontsize #-2 \\column { \"D.C.\" \"D.S.\" } }"
+        ],
+        "description": "D.C. D.S."
+    },
+    "ds_4": {
         "prefix": "ds",
         "body": [
             "\\bar \"||\" ",
@@ -329,9 +371,16 @@
     "grace": {
         "prefix": "grace",
         "body": [
-            "\\afterGrace $1 { $2 } $0"
+            "\\grace { $1 } $0"
         ],
-        "description": "后装饰音"
+        "description": "装饰音"
+    },
+    "grace_2": {
+        "prefix": "grace",
+        "body": [
+            "\\acciaccatura { $1 } $0"
+        ],
+        "description": "短倚音"
     },
     "acci": {
         "prefix": "acci",
@@ -340,6 +389,13 @@
         ],
         "description": "短倚音"
     },
+    "grace_3": {
+        "prefix": "grace",
+        "body": [
+            "\\appoggiatura { $1 } $0"
+        ],
+        "description": "长倚音"
+    },
     "appo": {
         "prefix": "appo",
         "body": [
@@ -347,11 +403,79 @@
         ],
         "description": "长倚音"
     },
+    "grace_4": {
+        "prefix": "grace",
+        "body": [
+            "\\afterGrace $1 { $2 } $0"
+        ],
+        "description": "后装饰音"
+    },
     "装饰音": {
+        "prefix": "装饰音",
+        "body": [
+            "\\grace { $1 } $0"
+        ],
+        "description": "装饰音"
+    },
+    "装饰音_2": {
+        "prefix": "装饰音",
+        "body": [
+            "\\acciaccatura { $1 } $0"
+        ],
+        "description": "短倚音"
+    },
+    "装饰音_3": {
+        "prefix": "装饰音",
+        "body": [
+            "\\appoggiatura { $1 } $0"
+        ],
+        "description": "长倚音"
+    },
+    "装饰音_4": {
         "prefix": "装饰音",
         "body": [
             "\\afterGrace $1 { $2 } $0"
         ],
         "description": "后装饰音"
+    },
+    "score_2": {
+        "prefix": "score",
+        "body": [
+            "\\score {",
+            "\t\\header {",
+            "\t\tpiece = \"${1:示例曲谱}\"",
+            "\t}",
+            "",
+            "\t\\new GrandStaff <<",
+            "\t\t\\chords {",
+            "\t\t\t% 和弦功能",
+            "\t\t\t\\set noChordSymbol = \"\"",
+            "",
+            "\t\t\t${0}",
+            "\t\t}",
+            "\t\t\\new Staff {",
+            "\t\t\t\\relative c' {",
+            "\t\t\t\t\\clef \"treble\"",
+            "\t\t\t\t\\key c \\major",
+            "\t\t\t\t\\time 4/4",
+            "\t\t\t\t% 高音部",
+            "\t\t\t\t",
+            "\t\t\t\t\\bar \"|.\"",
+            "\t\t\t}",
+            "\t\t}",
+            "\t\t\\new Staff {",
+            "\t\t\t\\relative c {",
+            "\t\t\t\t\\clef \"bass\"",
+            "\t\t\t\t\\key c \\major",
+            "\t\t\t\t\\time 4/4",
+            "\t\t\t\t% 低音部",
+            "\t\t\t\t",
+            "\t\t\t\t\\bar \"|.\"",
+            "\t\t\t}",
+            "\t\t}",
+            "\t>>",
+            "}"
+        ],
+        "description": "带高低音部和和弦"
     }
 }

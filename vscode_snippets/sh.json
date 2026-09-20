@@ -2,27 +2,15 @@
     "cwd": {
         "prefix": "cwd",
         "body": [
-            "while [ -h \"\\$SOURCE\" ]; do # resolve \\$SOURCE until the file is no longer a symlink",
-            "\tDIR=\"\\$( cd -P \"\\$( dirname \"\\$SOURCE\" )\" >/dev/null && pwd )\"",
-            "\tSOURCE=\"\\$(readlink \"\\$SOURCE\")\"",
-            "\t[[ \\$SOURCE != /* ]] && SOURCE=\"\\$DIR/\\$SOURCE\" # if \\$SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located",
+            "SOURCE=\"${BASH_SOURCE[0]}\"",
+            "while [ -h \"$SOURCE\" ]; do # resolve $SOURCE until the file is no longer a symlink",
+            "\tDIR=\"$( cd -P \"$( dirname \"$SOURCE\" )\" >/dev/null && pwd )\"",
+            "\tSOURCE=\"$(readlink \"$SOURCE\")\"",
+            "\t[[ $SOURCE != /* ]] && SOURCE=\"$DIR/$SOURCE\" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located",
             "done",
-            "DIR=\"\\$( cd -P \"\\$( dirname \"\\$SOURCE\" )\" >/dev/null && pwd )\""
+            "DIR=\"$( cd -P \"$( dirname \"$SOURCE\" )\" >/dev/null && pwd )\""
         ],
         "description": "Resolve current path and filename"
-    },
-    "temp": {
-        "prefix": "temp",
-        "body": [
-            "${1:TMPDIR}=\"\\$(mktemp -d ${2:`!p}",
-            "snip.rv = re.sub(r'[^a-zA-Z]', '_', snip.fn) or \"untitled\"",
-            "`}.XXXXXX)\"",
-            "trap \"rm -rf '\\\\$$1'\" 0               # EXIT",
-            "trap \"rm -rf '\\\\$$1'; exit 1\" 2       # INT",
-            "trap \"rm -rf '\\\\$$1'; exit 1\" 1 15    # HUP TERM",
-            "$0"
-        ],
-        "description": "TempDir"
     },
     "#!": {
         "prefix": "#!",
@@ -38,10 +26,81 @@
         "body": [
             "#!/usr/bin/env bash",
             "",
+            "function EchoUsage()",
+            "{",
+            "\techo \"",
+            "Usage: $(basename \"\\$0\") [options] <module_id>",
+            "",
+            "\tOptions:",
+            "\t\t-h [ --help ]            show this screen",
+            "\t\t-V [ --version ]         show program version",
+            "\t\t-v [ --verbose=<level> ] Set log level. 0: trace, 1: debug, 2:info ...",
+            "\" >&2",
+            "}",
+            "",
+            "TEMP=$(getopt -o h,V,v:: --long help,version,verbose:: -- \"$@\")",
+            "",
+            "if [ $? != 0 ] ; then echo \"Terminating...\" >&2 ; exit 1 ; fi",
+            "",
+            "# Note the quotes around $TEMP: they are essential!",
+            "eval set -- \"$TEMP\"",
+            "",
+            "show_version=",
+            "args=",
+            "",
+            "while true ; do",
+            "\tcase \"\\$1\" in",
+            "\t\t-h|--help)",
+            "\t\t\tEchoUsage",
+            "\t\t\texit 1",
+            "\t\t\t;;",
+            "\t\t-V|--version)",
+            "\t\t\tshow_version=1",
+            "\t\t\tshift 1",
+            "\t\t\tbreak",
+            "\t\t\t;;",
+            "\t\t-v|--verbose)",
+            "\t\t\targs=\"${args} --verbose \\$2\"",
+            "\t\t\tshift 2",
+            "\t\t\t;;",
+            "\t\t--)",
+            "\t\t\tshift 1",
+            "\t\t\tbreak",
+            "\t\t\t;;",
+            "\t\t*) ",
+            "\t\t\techo \"Unknown parameter '\\$1'!\"",
+            "\t\t\texit 1",
+            "\t\t\t;;",
+            "\tesac",
+            "done",
+            "",
+            "# 参数个数最少为1",
+            "if [ $# -lt 1 ]",
+            "then",
+            "\tEchoUsage",
+            "\texit 1",
+            "fi",
+            "",
+            "module_id=\\$1",
+            "",
+            "# 显示版本",
+            "if [ ! -z \"${show_version}\" ]",
+            "then",
+            "\techo \"Version\"",
+            "\texit 0",
+            "fi"
+        ],
+        "description": "Basic skel using getopt, not work in macOS"
+    },
+    "skel_2": {
+        "prefix": "skel",
+        "body": [
+            "#!/usr/bin/env bash",
+            "",
             "EchoUsage()",
             "{",
             "\techo \"",
-            "Usage: \\$(basename \"\\$0\") [options] [--]",
+            "Usage: $(basename \"\\$0\") [options] [--]",
             "",
             "\tOptions:",
             "\t\t-h|help       Display this message",
@@ -52,28 +111,28 @@
             "",
             "VERBOSE=",
             "while getopts \":hVvt:\" opt; do",
-            "\tcase \\$opt in",
+            "\tcase $opt in",
             "\t\th|help)",
             "\t\t\tEchoUsage",
             "\t\t\texit 0",
             "\t\t\t;;",
             "\t\tv|verbose)",
-            "\t\t\tVERBOSE=\"\\${VERBOSE}1\"",
+            "\t\t\tVERBOSE=\"${VERBOSE}1\"",
             "\t\t\t;;",
             "\t\tt|test)",
-            "\t\t\techo \"Testing argument: '\\$OPTARG' at position \\$OPTIND\"",
+            "\t\t\techo \"Testing argument: '$OPTARG' at position $OPTIND\"",
             "\t\t\t;;",
             "\t\t* )",
-            "\t\t\techo -e \"\\n  Option does not exist : '\\$OPTARG' at position \\$OPTIND\\n\"",
+            "\t\t\techo -e \"\\n  Option does not exist : '$OPTARG' at position $OPTIND\\n\"",
             "\t\t\tEchoUsage",
             "\t\t\texit 1",
             "\t\t\t;;",
             "\tesac",
             "done",
-            "shift \\$((\\$OPTIND-1))",
+            "shift $(($OPTIND-1))",
             "",
             "# 参数个数最少为1",
-            "if [ \\$# -lt 1 ]",
+            "if [ $# -lt 1 ]",
             "then",
             "\tEchoUsage",
             "\texit 1",
@@ -86,7 +145,7 @@
     "ostype": {
         "prefix": "ostype",
         "body": [
-            "case \"\\$OSTYPE\" in",
+            "case \"$OSTYPE\" in",
             "\t\"darwin\"*)",
             "\t\t: \"MacOS\"",
             "\t;;",
@@ -110,7 +169,7 @@
             "esac",
             "",
             "# Finally, set the variable.",
-            "os=\"\\$_\""
+            "os=\"$_\""
         ],
         "description": "case OSTYPE"
     },
@@ -127,12 +186,56 @@
     "read": {
         "prefix": "read",
         "body": [
-            "readarray -t ${1:my_array} <<<${2:\\$string}",
+            "IFS=$'\\n' read -r -d '' -a ${1:my_array} < <( ${2:command} && printf '\\0' )",
+            "$0"
+        ],
+        "description": "read from command into array"
+    },
+    "read_2": {
+        "prefix": "read",
+        "body": [
+            "readarray -t ${1:my_array} < <( ${2:command} )",
+            "$0"
+        ],
+        "description": "readarray from command into array"
+    },
+    "read_3": {
+        "prefix": "read",
+        "body": [
+            "IFS=$'\\n' read -r -d '' -a ${1:my_array} <<<${2:$string}",
+            "$0"
+        ],
+        "description": "read from string into array"
+    },
+    "read_4": {
+        "prefix": "read",
+        "body": [
+            "readarray -t ${1:my_array} <<<${2:$string}",
             "$0"
         ],
         "description": "readarray from string into array"
     },
     "heredoc": {
+        "prefix": "heredoc",
+        "body": [
+            "<< ${1:EOS}",
+            "${2:lines}",
+            "$1",
+            "$0"
+        ],
+        "description": "heredoc from string"
+    },
+    "heredoc_2": {
+        "prefix": "heredoc",
+        "body": [
+            "<< '${1:EOS}'",
+            "${2:lines}",
+            "$1",
+            "$0"
+        ],
+        "description": "heredoc from string, disable special char"
+    },
+    "heredoc_3": {
         "prefix": "heredoc",
         "body": [
             "<<< ${1:\"string\"}"
@@ -142,24 +245,47 @@
     "append": {
         "prefix": "append",
         "body": [
-            "case \":\\\\${${1:PATH}:-}:\" in",
-            "    *:${2:new_path}:*) ;;",
-            "    *) $1=\"\\\\${$1:+\\\\$$1:}$2\" ;;",
-            "esac"
+            "${1:PATH}=\\$$1\\${$1:+:${2:new_path}}"
         ],
-        "description": "Append new_path to $PATH if not existed"
+        "description": "Append new_path to $PATH"
     },
     "prepend": {
         "prefix": "prepend",
         "body": [
-            "case \":\\\\${${1:PATH}:-}:\" in",
+            "${1:PATH}=\\${$1:+${2:new_path}:}\\$$1"
+        ],
+        "description": "Prepend new_path to $PATH"
+    },
+    "append_2": {
+        "prefix": "append",
+        "body": [
+            "case \":\\${${1:PATH}:-}:\" in",
             "    *:${2:new_path}:*) ;;",
-            "    *) $1=\"$2\\\\${$1:+:\\\\$$1}\" ;;",
+            "    *) $1=\"\\${$1:+\\$$1:}$2\" ;;",
+            "esac"
+        ],
+        "description": "Append new_path to $PATH if not existed"
+    },
+    "prepend_2": {
+        "prefix": "prepend",
+        "body": [
+            "case \":\\${${1:PATH}:-}:\" in",
+            "    *:${2:new_path}:*) ;;",
+            "    *) $1=\"$2\\${$1:+:\\$$1}\" ;;",
             "esac"
         ],
         "description": "Prepend new_path to $PATH if not existed"
     },
     "if": {
+        "prefix": "if",
+        "body": [
+            "if ${2:[[ ${1:condition} ]]}; then",
+            "\t${0:$TM_SELECTED_TEXT}",
+            "fi"
+        ],
+        "description": "if ... then (if)"
+    },
+    "if_2": {
         "prefix": "if",
         "body": [
             "if ${2:type ${1:cmd} &> /dev/null}; then",

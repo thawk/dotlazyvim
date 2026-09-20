@@ -1,0 +1,51 @@
+local ls = require("luasnip")
+
+return {
+
+  -- skel 
+  ls.snippet([[skel]], {
+    ls.text_node("# "),
+    ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
+    ls.text_node({"", "", ""}),
+    ls.insert_node(0),
+    ls.text_node({"", ""}),
+  }, { description = [[]] }),
+  -- design 设计报告
+  ls.snippet([[design]], {
+    ls.text_node("# "),
+    ls.insert_node(1, ls.function_node(function() return vim.fn.expand("%:t:r") end)),
+    ls.text_node({"", "", "## 背景", "", ""}),
+    ls.insert_node(0),
+    ls.text_node({"", "", "## 目标", "", "### 需求", "", "### 约束", "", "## 方案", "", "### 要点", "", "### 优点", "", "### 缺点", "", "## 建议", "", "## 实现", "", ""}),
+  }, { description = [[设计报告]] }),
+  -- refl Reference Link
+  ls.snippet([[refl]], {
+    ls.text_node("["),
+    ls.insert_node(1, ls.function_node(function(_, parent)
+      local sel = parent and (parent.snippet and parent.snippet.env or parent.env) and (parent.snippet and parent.snippet.env or parent.env).LS_SELECT_RAW
+      if type(sel) == "table" then
+        local txt = table.concat(sel, "\n")
+        if txt ~= "" then return sel end
+      elseif type(sel) == "string" then
+        if sel ~= "" then return {sel} end
+      end
+      return {"Text"}
+    end)),
+    ls.text_node("]["),
+    ls.insert_node(2, "id"),
+    ls.text_node("]"),
+    ls.insert_node(0),
+    ls.text_node({"", "", "["}),
+    ls.function_node(function(args)
+      local a = args[1][1] or ""
+      if a ~= "" then return a end
+      return args[2][1] or ""
+    end, {2, 1}),
+    ls.text_node("]: "),
+    ls.insert_node(3, "url"),
+    ls.text_node(" \""),
+    ls.insert_node(4, ls.function_node(function(args) return args[1][1] or "" end, {3})),
+    ls.text_node({"\"", ""}),
+  }, { wordTrig = true, description = [[Reference Link]] }),
+
+}

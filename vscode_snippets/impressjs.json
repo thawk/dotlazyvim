@@ -20,7 +20,7 @@
     "slide": {
         "prefix": "slide",
         "body": [
-            "<section class=\"step slide$3\">",
+            "<section class=\"step slide${3}\">",
             "\t<h3>$1</h3>",
             "\t$0",
             "</section>",
@@ -29,6 +29,20 @@
         "description": "impress.js slide"
     },
     "markdown": {
+        "prefix": "markdown",
+        "body": [
+            "<section class=\"step markdown slide${2}\">",
+            "\t<script type=\"text/template\">",
+            "\t\t### ${1:title}",
+            "",
+            "\t\t$0",
+            "\t</script>",
+            "</section>",
+            ""
+        ],
+        "description": "impress.js markdown slide"
+    },
+    "markdown_2": {
         "prefix": "markdown",
         "body": [
             "<div class=\"markdown\">",

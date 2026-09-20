@@ -18,7 +18,7 @@
             "for (var i in presentations) {",
             "\tvar name = path.basename(path.dirname(presentations[i]));",
             "",
-            "\tprocess.stdout.write(`  Processing \\${i*1+1}/\\${count}: \\${name}...`);",
+            "\tprocess.stdout.write(`  Processing ${i*1+1}/${count}: ${name}...`);",
             "\tprocess.stdout.write(`done.\\n`);",
             "}",
             "",
@@ -81,7 +81,7 @@
             "",
             "// Hey, Listen!",
             "app.listen(port, () =>",
-            "\tconsole.log(`GitGraph server listening on port \\${port}!`)",
+            "\tconsole.log(`GitGraph server listening on port ${port}!`)",
             ");"
         ],
         "description": "node HTTP server"
