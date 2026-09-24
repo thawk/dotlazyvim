@@ -2,9 +2,9 @@
   "cpp": {
     "prefix": "cpp",
     "body": [
-      "\\`\\`\\`cpp",
+      "\`\`\`cpp",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "cpp code block"
@@ -12,9 +12,9 @@
   "css": {
     "prefix": "css",
     "body": [
-      "\\`\\`\\`css",
+      "\`\`\`css",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "css code block"
@@ -22,9 +22,9 @@
   "haskell": {
     "prefix": "haskell",
     "body": [
-      "\\`\\`\\`haskell",
+      "\`\`\`haskell",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "ruby code block"
@@ -32,9 +32,9 @@
   "html": {
     "prefix": "html",
     "body": [
-      "\\`\\`\\`html",
+      "\`\`\`html",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "html code block"
@@ -42,9 +42,9 @@
   "js": {
     "prefix": "js",
     "body": [
-      "\\`\\`\\`javascript",
+      "\`\`\`javascript",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "javascript code block"
@@ -52,9 +52,9 @@
   "lilypond": {
     "prefix": "lilypond",
     "body": [
-      "\\`\\`\\`lilypond",
+      "\`\`\`lilypond",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "lilypond code block"
@@ -62,9 +62,9 @@
   "markdown": {
     "prefix": "markdown",
     "body": [
-      "\\`\\`\\`markdown",
+      "\`\`\`markdown",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "markdown code block"
@@ -72,9 +72,9 @@
   "python": {
     "prefix": "python",
     "body": [
-      "\\`\\`\\`python",
+      "\`\`\`python",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "python code block"
@@ -82,9 +82,9 @@
   "racket": {
     "prefix": "racket",
     "body": [
-      "\\`\\`\\`racket",
+      "\`\`\`racket",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "racket code block"
@@ -92,9 +92,9 @@
   "ruby": {
     "prefix": "ruby",
     "body": [
-      "\\`\\`\\`ruby",
+      "\`\`\`ruby",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "ruby code block"
@@ -102,9 +102,9 @@
   "sh": {
     "prefix": "sh",
     "body": [
-      "\\`\\`\\`sh",
+      "\`\`\`sh",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "sh code block"
@@ -112,9 +112,9 @@
   "sml": {
     "prefix": "sml",
     "body": [
-      "\\`\\`\\`sml",
+      "\`\`\`sml",
       "$TM_SELECTED_TEXT${1}",
-      "\\`\\`\\`",
+      "\`\`\`",
       "${0}"
     ],
     "description": "sml code block"
