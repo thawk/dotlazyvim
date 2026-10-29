@@ -13,5 +13,18 @@
       "$0"
     ],
     "description": "Markdown comment"
+  },
+  "book": {
+    "prefix": "book",
+    "body": [
+      "---",
+      "title: ${1}",
+      "authors: ${2}",
+      "comments: |",
+      "　　$TM_SELECTED_TEXT${3}",
+      "---",
+      "${0}"
+    ],
+    "description": "book header frontmatter"
   }
 }
