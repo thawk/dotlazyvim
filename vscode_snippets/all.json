@@ -19,8 +19,8 @@
     "body": [
       "---",
       "title: ${1}",
-      "authors: ${2}",
-      "comments: |",
+      "author: ${2}",
+      "description: |",
       "　　$TM_SELECTED_TEXT${3}",
       "---",
       "${0}"
