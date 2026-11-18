@@ -167,7 +167,7 @@
       "\\\\tocItem \\markup \\concat { \\\\\"${3:$2}Piece\" \"\" }",
       "\\\\score {",
       "\t\\\\transpose c ${4:\\\\\"$2Key\"} {",
-      "\t\t\\\\chooseMusic \"a4\" \\\\\"$3NotesC\" \\\\\"$3MelodyC\"",
+      "\t\t\\\\chooseMusic \"a4\" \\\\\"$3NotesFixed\" \\\\\"$3MelodyC\"",
       "\t}",
       "\t\\\\header {",
       "\t\tpiece    = \\\\\"$3Piece\"",

@@ -32,7 +32,7 @@ return {
 	\fine
 }
 
-"@1?NotesC" =
+"@1?NotesMovable" =
 {
 	\tempo 4 = @8?
 
@@ -41,15 +41,16 @@ return {
 	}
 }
 
-"@1?Notes" =
+"@1?NotesFixed" =
 {
 	\transpose c \"@1?Key" {
-		\"@1?NotesC"
+		\"@1?NotesMovable"
 	}
 }
+"@1?Notes" = \movableDo \"@1?NotesMovable" \"@1?NotesFixed"
 
-"@1?MelodyC" = \"@1?NotesC"
-"@1?Melody" = \"@1?Notes"
+"@1?MelodyC" = \"@1?NotesMovable"
+"@1?Melody" = \"@1?NotesFixed"
 
 ]],
       {
@@ -117,19 +118,20 @@ melody = \relative @4?
 	>>
 }
 
-"@1?NotesC" =
+"@1?NotesMovable" =
 {
 	\transpose @6? c {
 		\"@1?Pitches"
 	}
 }
 
-"@1?Notes" =
+"@1?NotesFixed" =
 {
 	\transpose c \"@1?Key" {
-		\"@1?NotesC"
+		\"@1?NotesMovable"
 	}
 }
+"@1?Notes" = \movableDo \"@1?NotesMovable" \"@1?NotesFixed"
 
 "@1?MelodyC" =
 {
@@ -550,21 +552,22 @@ grayVoice = {
 	>>
 }
 
-"@1?NotesC" =
+"@1?NotesMovable" =
 {
 	\transpose @6? c {
 		\"@1?Pitches"
 	}
 }
 
-"@1?Notes" =
+"@1?NotesFixed" =
 {
 	\transpose c \"@1?Key" {
-		\"@1?NotesC"
+		\"@1?NotesMovable"
 	}
 }
+"@1?Notes" = \movableDo \"@1?NotesMovable" \"@1?NotesFixed"
 
-"@1?Melody" = \"@1?Notes"
+"@1?Melody" = \"@1?NotesFixed"
 
 ]],
       {
